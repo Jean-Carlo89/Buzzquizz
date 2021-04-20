@@ -277,10 +277,6 @@ body {
     flex-direction: column;
 }
 
-/*.create.quizz{
-    margin-top: 140px;
-}*/
-
 .create.quizz h1{
     font-size: 23px;
     margin-bottom: 27px;
@@ -299,50 +295,7 @@ body {
     margin-bottom: 85px;
 }
 
-   /* .quizz-info div{
-        width: 564px;
-        height: 46px;
-        border: 1px solid #D1D1D1;
-        border-radius: 5px;
-    }*/
-
-
-       /* .quizz-title, .quizz-image-url, .questions-quantity, 
-        .levels-quantity{
-            display: flex;
-            align-items: center;
-            margin-bottom: 5px;
-        }*/
-
-           /* .quizz-info input{
-                width: 460px;
-                height: 22px;
-                margin-left: 23px;
-                border: none;
-            }*/
-
-            /*.quizz-info input::placeholder{
-                font-style: italic;
-                font-size: 19px;
-            }*/
-
-/*.create.quizz button{
-    width: 368px;
-    height: 54px;
-    border-radius: 15px;
-    background-color: red;
-}
-
-.create.quizz button span{
-    color: white;
-    font-size: 21px;
-}
-*/
-
-
-
-
-
+   
 /*------------------------Desktop 9--------------*/
 .questions h1{
     font-size: 23px;
@@ -364,6 +317,8 @@ body {
     margin-left: 18px;
 }
 
+
+
 .edit-icon{
     width: 30px;
     height: 30px;
@@ -372,7 +327,7 @@ body {
 
 .question{
     width: 600px;
-    height: 825px;
+    height: 770px;
     background-color: white;
     margin-bottom: 24px;
     display: flex;
@@ -383,35 +338,13 @@ body {
     
 }
 
-    /*.question .question-text-color div{
-        width: 564px;
-        height: 46px;
-        border: 1px solid #D1D1D1;
-        border-radius: 5px;
-        margin-bottom: 14px;
-        display: flex;
-            align-items: center;
-    }*/
-
-       /* .question input{
-            width: 460px;
-            height: 22px;
-            margin-left: 23px;
-            border: none;
-        }*/
-
-        /*.question input::placeholder{
-            font-style: italic;
-            font-size: 19px;
-        }*/
+    
 
 .false-answers li div.answer-f-img{
     margin-bottom: 32px;
 }
 
-/*.create.quizz{
-    margin-top: 140px;
-}*/
+
 
 .questions, .create.quizz {
     margin-top: 140px;
@@ -495,6 +428,10 @@ body {
 .create.quizz button span, .questions button span{
     color: white;
     font-size: 21px;
+}
+
+.questions button{
+    margin: 20px 0 20px 0;
 }
 
    
