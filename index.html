@@ -60,7 +60,7 @@
     <button onclick="testToggleHide(this,'levels')"> toggle 10</button>
     <button onclick="testToggleHide(this,'complete-quizz')"> toggle 11</button>
 </div>
-<div class="create quizz">
+<div class="create quizz hidden">
     
     <h1>Comece pelo começo</h1>
 
@@ -89,15 +89,109 @@
     <h1>Crie suas perguntas</h1>
     <ul class="questions-list">
         <li class="question">
-            <h2>Pergunta 1</h2>
-            <div></div>
+           <span class="pergunta"><h2>Pergunta 1</h2></span> 
+            <div class="question-text-color">
+                <div class="question-text">
+                    <input type="text" placeholder="Texto da pergunta">
+                </div>
+                <div class="question-color">
+                    <input type="text" placeholder="Cor de fundo da pergunta">
+                </div>
+            </div>
+
+            <div class="answer-true">
+                <h2>Resposta correta</h2>
+                <div class="answer-t-text">
+                    <input type="text" placeholder="Resposta correta">
+                </div>
+                <div class="answer-t-img">
+                    <input type="text" placeholder="Url da imagem">
+                </div>
+            </div>
+
+            <ul class="false-answers">
+                <h2>Respostas incorretas</h2>
+                <li>
+                    <div class="answer-f-text">
+                        <input type="text" placeholder="Resposta incorreta 1">
+                    </div>
+                    <div class="answer-f-img">
+                        <input type="text" placeholder="Url da imagem 1">
+                    </div>
+                </li>
+
+                <li>
+                    <div class="answer-f-text">
+                        <input type="text" placeholder="Resposta incorreta 2">
+                    </div>
+                    <div class="answer-f-img">
+                        <input type="text" placeholder="Url da imagem 2">
+                    </div>
+                </li>
+                <li>
+                    <div class="answer-f-text">
+                        <input type="text" placeholder="Resposta incorreta 3">
+                    </div>
+                    <div class="answer-f-img">
+                        <input type="text" placeholder="Url da imagem 3">
+                    </div>
+                </li>
+            </ul>
         </li>
         
         <li class="question">
-            <h2>Pergunta 2</h2>
-            <div></div>
+            <span class="pergunta"><h2>Pergunta 2</h2></span> 
+            <div class="question-text-color">
+                <div class="question-text">
+                    <input type="text" placeholder="Texto da pergunta">
+                </div>
+                <div class="question-color">
+                    <input type="text" placeholder="Cor de fundo da pergunta">
+                </div>
+            </div>
+
+            <div class="answer-true">
+                <h2>Resposta correta</h2>
+                <div class="answer-t-text">
+                    <input type="text" placeholder="Resposta correta">
+                </div>
+                <div class="answer-t-img">
+                    <input type="text" placeholder="Url da imagem">
+                </div>
+            </div>
+
+            <ul class="false-answers">
+                <h2>Respostas incorretas</h2>
+                <li>
+                    <div class="answer-f-text">
+                        <input type="text" placeholder="Resposta incorreta 1">
+                    </div>
+                    <div class="answer-f-img">
+                        <input type="text" placeholder="Url da imagem 1">
+                    </div>
+                </li>
+
+                <li>
+                    <div class="answer-f-text">
+                        <input type="text" placeholder="Resposta incorreta 2">
+                    </div>
+                    <div class="answer-f-img">
+                        <input type="text" placeholder="Url da imagem 2">
+                    </div>
+                </li>
+                <li>
+                    <div class="answer-f-text">
+                        <input type="text" placeholder="Resposta incorreta 3">
+                    </div>
+                    <div class="answer-f-img">
+                        <input type="text" placeholder="Url da imagem 3">
+                    </div>
+                </li>
+            </ul>
         </li>
     </ul>
+
+    <button><span>Prosseguir para criar níveis</span></button>
 </div>
 
 <div class="create levels">

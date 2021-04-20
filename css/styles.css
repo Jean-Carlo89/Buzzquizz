@@ -143,9 +143,9 @@ body {
     flex-direction: column;
 }
 
-.create.quizz{
+/*.create.quizz{
     margin-top: 140px;
-}
+}*/
 
 .create.quizz h1{
     font-size: 23px;
@@ -165,34 +165,34 @@ body {
     margin-bottom: 85px;
 }
 
-    .quizz-info div{
+   /* .quizz-info div{
         width: 564px;
         height: 46px;
         border: 1px solid #D1D1D1;
         border-radius: 5px;
-    }
+    }*/
 
 
-        .quizz-title, .quizz-image-url, .questions-quantity, 
+       /* .quizz-title, .quizz-image-url, .questions-quantity, 
         .levels-quantity{
             display: flex;
             align-items: center;
             margin-bottom: 5px;
-        }
+        }*/
 
-            .quizz-info input{
+           /* .quizz-info input{
                 width: 460px;
                 height: 22px;
                 margin-left: 23px;
                 border: none;
-            }
+            }*/
 
-            .quizz-info input::placeholder{
+            /*.quizz-info input::placeholder{
                 font-style: italic;
                 font-size: 19px;
-            }
+            }*/
 
-.create.quizz button{
+/*.create.quizz button{
     width: 368px;
     height: 54px;
     border-radius: 15px;
@@ -203,6 +203,11 @@ body {
     color: white;
     font-size: 21px;
 }
+*/
+
+
+
+
 
 /*------------------------Desktop 9--------------*/
 .questions h1{
@@ -211,12 +216,144 @@ body {
     font-weight: bold;
 }
 
+
+
+
+
 .question{
     width: 600px;
     height: 825px;
     background-color: red;
     margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
 }
+
+    /*.question .question-text-color div{
+        width: 564px;
+        height: 46px;
+        border: 1px solid #D1D1D1;
+        border-radius: 5px;
+        margin-bottom: 14px;
+        display: flex;
+            align-items: center;
+    }*/
+
+       /* .question input{
+            width: 460px;
+            height: 22px;
+            margin-left: 23px;
+            border: none;
+        }*/
+
+        /*.question input::placeholder{
+            font-style: italic;
+            font-size: 19px;
+        }*/
+
+.false-answers li div.answer-f-img{
+    margin-bottom: 32px;
+}
+
+/*.create.quizz{
+    margin-top: 140px;
+}*/
+
+.questions, .create.quizz {
+    margin-top: 140px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*--------------todas as divs que seguram input----*/
+.question .question-text-color div, .quizz-info div, 
+.answer-true div, .false-answers li div{
+    width: 564px;
+    height: 46px;
+    border: 1px solid #D1D1D1;
+    border-radius: 5px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+}
+
+
+/*-------------------todos os h2 dentro da li de criar perguntas------------------*/
+
+.questions-list h2{
+    margin-top: 27px;
+    margin-bottom: 12px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.question .pergunta, .false-answers h2{
+    width:564px ;
+}
+       /* .answer-true h2, .question .pergunta{
+            margin-top: 27px;
+            margin-bottom: 12px;
+            font-size: 20px;
+            font-weight: bold;
+        }*/
+
+/*--------------------- todos os inputs----------------------*/
+.question input, .quizz-info input{
+    width: 460px;
+    height: 22px;
+    margin-left: 23px;
+    border: none;
+
+}
+
+.quizz-info input::placeholder, 
+.question input::placeholder{
+    font-style: italic;
+    font-size: 19px;
+}
+
+/*------------------------Todos os botoes---------------*/
+
+.create.quizz button, .questions button{
+    width: 368px;
+    height: 54px;
+    border-radius: 15px;
+    background-color: red;
+}
+
+.create.quizz button span, .questions button span{
+    color: white;
+    font-size: 21px;
+}
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .control-buttons{
     position: fixed;
     bottom: 0;
