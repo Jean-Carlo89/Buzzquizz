@@ -1,0 +1,147 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-------------------Dando position fixed no topo----------*/
+
+.top{
+    height: 70px;
+    background: #EC362D;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.top p{
+    color: white;
+    font-weight: bold;
+    font-size: 37px;
+}
+
+
+/*----------------------------CSS Desktop 8-11------------------------------*/
+
+/*------------------------Desktop 8--------------*/
+.create{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.create.quizz{
+    margin-top: 140px;
+}
+
+.create.quizz h1{
+    font-size: 23px;
+    margin-bottom: 27px;
+    font-weight: bold;
+}
+
+.quizz-info{
+    width: 600px;
+    height: 256px;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 85px;
+}
+
+.quizz-info div{
+    width: 564px;
+    height: 46px;
+    border: 1px solid #D1D1D1;
+    border-radius: 5px;
+}
+
+
+.quizz-title, .quizz-image-url, .questions-quantity, 
+.levels-quantity{
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.quizz-info input{
+    width: 460px;
+    height: 22px;
+    margin-left: 23px;
+    border: none;
+}
+
+.quizz-info input::placeholder{
+    font-style: italic;
+    font-size: 19px;
+}
+
+.create.quizz button{
+    width: 368px;
+    height: 54px;
+    border-radius: 15px;
+    background-color: red;
+}
+
+.create.quizz button span{
+    color: white;
+    font-size: 21px;
+}
+
+
+
+.control-buttons{
+    position: fixed;
+    bottom: 0;
+}
+
+
+.hidden{
+    display: none;
+}
