@@ -12,13 +12,15 @@
     <title>Document</title>
 </head>
 <body>
+
+
 <div class="heading">
     <h1>
         BuzzQuizz
     </h1>
 </div>
 
-<div class="feed">
+<div class="feed hidden">
     <div class="created-empty">
         <p>Você não criou nenhum<br>quizz ainda :(</p>
         <button>Criar Quizz</button>
@@ -50,15 +52,61 @@
 
 
 
+
 <!-- ---------------Desktop 8-11------------------------>
+<div class="control-buttons">
+    <button onclick="testToggleHide(this,'quizz')"> toggle 8</button>
+    <button onclick="testToggleHide(this,'questions')"> toggle 9</button>
+    <button onclick="testToggleHide(this,'levels')"> toggle 10</button>
+    <button onclick="testToggleHide(this,'complete-quizz')"> toggle 11</button>
+</div>
+<div class="create quizz">
+    
+    <h1>Comece pelo começo</h1>
 
-<div class="create quizz"></div>
+    <div class="quizz-info">
+        <div class="quizz-title">
+            <input type="text" placeholder="Título do seu quizz">
+        </div>
+        <div class="quizz-image-url">
+            <input type="text" placeholder="URL da imagem do seu quizz">
+        </div>
+        <div class="questions-quantity">
+            <input type="text" placeholder="Quantidade perguntas do quizz">
+        </div>
+        <div class="levels-quantity">
+            <input type="text" placeholder="Quantidade de níveis do quizz">
+        </div>
+    </div>
 
-<div class="create questions"></div>
+    <button><span>Prosseguir para criar perguntas</span></button>
 
-<div class="create levels"></div>
+    
+</div>
 
-<div class="complete-quizz"></div>
+<div class="create questions">
+    
+    <h1>Crie suas perguntas</h1>
+    <ul class="questions-list">
+        <li class="question">
+            <h2>Pergunta 1</h2>
+            <div></div>
+        </li>
+        
+        <li class="question">
+            <h2>Pergunta 2</h2>
+            <div></div>
+        </li>
+    </ul>
+</div>
+
+<div class="create levels">
+
+</div>
+
+<div class="complete-quizz">
+
+</div>
 
 
 <script src='script/script.js'></script>   
