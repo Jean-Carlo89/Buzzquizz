@@ -136,32 +136,32 @@ body {
     margin-bottom: 85px;
 }
 
-.quizz-info div{
-    width: 564px;
-    height: 46px;
-    border: 1px solid #D1D1D1;
-    border-radius: 5px;
-}
+    .quizz-info div{
+        width: 564px;
+        height: 46px;
+        border: 1px solid #D1D1D1;
+        border-radius: 5px;
+    }
 
 
-.quizz-title, .quizz-image-url, .questions-quantity, 
-.levels-quantity{
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-}
+        .quizz-title, .quizz-image-url, .questions-quantity, 
+        .levels-quantity{
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
 
-.quizz-info input{
-    width: 460px;
-    height: 22px;
-    margin-left: 23px;
-    border: none;
-}
+            .quizz-info input{
+                width: 460px;
+                height: 22px;
+                margin-left: 23px;
+                border: none;
+            }
 
-.quizz-info input::placeholder{
-    font-style: italic;
-    font-size: 19px;
-}
+            .quizz-info input::placeholder{
+                font-style: italic;
+                font-size: 19px;
+            }
 
 .create.quizz button{
     width: 368px;
@@ -175,8 +175,19 @@ body {
     font-size: 21px;
 }
 
+/*------------------------Desktop 9--------------*/
+.questions h1{
+    font-size: 23px;
+    margin-bottom: 27px;
+    font-weight: bold;
+}
 
-
+.question{
+    width: 600px;
+    height: 825px;
+    background-color: red;
+    margin-bottom: 24px;
+}
 .control-buttons{
     position: fixed;
     bottom: 0;
