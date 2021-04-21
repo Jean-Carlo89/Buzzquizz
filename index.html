@@ -153,7 +153,7 @@
     <button onclick="testToggleHide(this,'levels')"> toggle 10</button>
     <button onclick="testToggleHide(this,'complete-quizz')"> toggle 11</button>
 </div>
-<div class="create quizz hidden">
+<div class="create quizz hidden"><!--start quizz info-->
     <h1>Comece pelo começo</h1>
 
     <div class="quizz-info">
@@ -172,9 +172,9 @@
     </div>
 
     <button><span>Prosseguir para criar perguntas</span></button>
-</div>
+</div><!--end quizz info-->
 
-<div class="create questions">
+<div class="create questions hidden"><!-- start quizz questions-->
     
     <h1>Crie suas perguntas</h1>
     <ul class="questions-list">
@@ -336,15 +336,67 @@
     </ul>
 
     <button><span>Prosseguir para criar níveis</span></button>
-</div>
+</div><!--end quizz questions-->
 
-<div class="create levels">
+<div class="create levels hidden"><!-- start quizz levels-->
+    <h1>Agora decida os níveis</h1>
+    <ul>
+        <li class="level">
+            <span class="lvl"><h2>Nível 1</h2>  <ion-icon class="edit-icon" name="create-outline" onclick="addDropLevel(this)"></ion-icon></span>
+                <div class="level-container">
+                    <div class="level-title">
+                        <input type="text" placeholder="Texto da pergunta">
+                    </div>
+                    
+                    <div class="level-min-wr level-wr">
+                        <input type="text" placeholder="% de acerto mínima">
+                    </div>
+                    
+                    <div class="level-url">
+                        <input type="text" placeholder="URL da imagem do nível">
+                    </div>
+                    
+                    <div class="level-description">
+                        <input type="text" placeholder="Descrição do nível">
+                    </div>
+                </div>
+        </li>
 
-</div>
+        <li class="level">
+            <span class="lvl"><h2>Nível 2</h2>  <ion-icon class="edit-icon" name="create-outline" onclick="addDropLevel(this)"></ion-icon></span>
+                <div class="level-container hidden">
+                    <div class="level-title">
+                        <input type="text" placeholder="Texto da pergunta">
+                    </div>
+                    
+                    <div class="level-min-wr level-wr">
+                        <input type="text" placeholder="% de acerto mínima">
+                    </div>
+                    
+                    <div class="level-url">
+                        <input type="text" placeholder="URL da imagem do nível">
+                    </div>
+                    
+                    <div class="level-description">
+                        <input type="text" placeholder="Descrição do nível">
+                    </div>
+                </div>
+        </li>
 
-<div class="complete-quizz">
+    </ul>
+</div><!-- end quizz levels-->
 
-</div>
+<div class="create complete-quizz"><!-- start finish quizz screen-->
+    <h1>Votre quizz est prêt!</h1>
+
+    <div class='complete'>
+        <span>exemplo macaco-louco</span>
+    </div>
+
+    <button>Acessar Quizz</button>
+
+    <span class="toHome">Voltar pra home</span>
+</div><!-- end finish quizz screen-->
 
 
 <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
