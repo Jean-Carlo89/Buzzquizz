@@ -67,15 +67,16 @@ function testToggleHide(clickedButton,classOfButton){
 
 
 function addDrop(clickedIcon){
-    const addHiddenToOthers = document.querySelectorAll('.question')
+    const addHiddenToOthers = document.querySelectorAll('.question-container')
     for(let i =0; i<addHiddenToOthers.length;i++){
         addHiddenToOthers[i].classList.add('hidden')
     }
-    console.log(clickedIcon)
-    console.log(clickedIcon.parentNode.nextElementSibling)
+   // console.log(clickedIcon)
+   // console.log(clickedIcon.parentNode.nextElementSibling)
+    
     clickedIcon.parentNode.nextElementSibling.classList.remove('hidden')
     clickedIcon.parentNode.nextElementSibling.classList.add('drop')
-    clickedIcon.parentNode.nextElementSibling.scrollIntoView()
+    //clickedIcon.parentNode.nextElementSibling.scrollIntoView()
 }
 
 function addDropLevel(clickedIcon){

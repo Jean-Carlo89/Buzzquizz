@@ -303,7 +303,7 @@ body {
     font-weight: bold;
 }*/
 
-.pergunta{
+/*.pergunta{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -311,7 +311,7 @@ body {
     background-color: white;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
     border-bottom: none;
-}
+}*/
 
 .pergunta h2{
     margin-left: 18px;
@@ -325,7 +325,7 @@ body {
     margin-right: 18px;
 }
 
-.question{
+/*.question{
     width: 600px;
     height: 770px;
     background-color: white;
@@ -336,7 +336,7 @@ body {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
     border-top:none;
     
-}
+}*/
 
 .false-answers li div.answer-f-img{
     margin-bottom: 32px;
@@ -348,32 +348,13 @@ body {
     margin-top: 140px;
 }
 
-/*---------------------------------animacao de drop down------------*/
-.drop{
-    animation-name: drop;
-    animation-duration: 1s;
-}
 
-
-
-@keyframes drop {
-   from{opacity: 0;
-    transform: translateY(-100px);
-        }
-   to{opacity: 1;
-    transform: translateY(0);
-    }
-   
-    /* from{transform: translateY(-1px);}
-    to{ transform: translateY(0);}*/
-
-}
 
 
 
 /*---------------------------desktop 10----------------------*/
 
-.level{
+.level, .question{
     width: 600px;
     /*height: 770px;*/
     background-color: white;
@@ -395,7 +376,7 @@ body {
     margin-bottom: 0;
 }
 
-.lvl{
+.lvl, .pergunta{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -440,7 +421,7 @@ body {
     width: 220px;
     height: 44px;
     display: flex;
-    align-items: center;
+    align-items: center; 
     justify-content: center;
     color: #818181;
     font-size: 21px;
@@ -527,7 +508,26 @@ body {
 
 
 
+/*---------------------------------animacao de drop down------------*/
+.drop{
+    animation-name: drop;
+    animation-duration: 0.75s;
+}
 
+
+
+@keyframes drop {
+   from{opacity: 0;
+    /*transform: translateY(-100px);*/
+        }
+   to{opacity: 1;
+    /*transform: translateY(0);*/
+    }
+   
+    /* from{transform: translateY(-1px);}
+    to{ transform: translateY(0);}*/
+
+}
 
 
 
