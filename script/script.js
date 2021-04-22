@@ -58,6 +58,9 @@ let numberOfLevels;
 let quizzTitle;
 let mainImage;
 
+let object=[]
+let objectFinal ={}
+
 
 
 /*-------------------------------------Javascript layout 8-11------------------------*/
@@ -129,9 +132,75 @@ function createQuizzQuestions(){
 }
 
 function createQuizzLevels(){
-    printCreateLevels()
-    document.querySelector('.create.questions').classList.toggle('hidden')
-    document.querySelector('.create.levels').classList.toggle('hidden')
+  
+  /*
+    const question1 = document.querySelector('.question-text').children[0].value
+   console.log(question1)
+   
+   const question1Color = document.querySelector('.question-color').children[0].value
+   console.log(question1Color)
+
+   const question1Answer1 = document.querySelector('.answer-true .answer-t-text').children[0].value
+   console.log(question1Answer1)
+
+   const question1Image1 = document.querySelector('.answer-true .answer-t-img').children[0].value
+   console.log(question1Image1)
+
+   const question1Answer2 = document.querySelector('.answer-false .answer-f-text').children[0].value
+   console.log(question1Answer2)
+
+   const question1Image2 = document.querySelector('.answer-false .answer-f-img').children[0].value
+   console.log(question1Image2)
+*/
+const question = document.querySelectorAll('.pergunta')
+console.log(question)
+
+const value = question[0]
+console.log(value)
+console.log(value.innerText)
+   
+    for(let i=1;i<=question.length;i++){
+   
+
+   if(question[i-1].innerText===`Pergunta ${i}`){
+    const question1 = document.querySelector('.question-text').children[0].value
+    
+    
+    const question1Color = document.querySelector('.question-color').children[0].value
+    
+    const question1Answer1 = document.querySelector('.answer-true .answer-t-text').children[0].value
+    
+ 
+    const question1Image1 = document.querySelector('.answer-true .answer-t-img').children[0].value
+    
+ 
+    const question1Answer2 = document.querySelector('.answer-false .answer-f-text').children[0].value
+    
+ 
+    const question1Image2 = document.querySelector('.answer-false .answer-f-img').children[0].value
+    
+   
+    //console.log(`${question${i}} :question1`)
+   //console.log(`${questioniColor}:question1Color`)
+   //console.log(`${questioniAnswer1}:question1Answer1`)
+   //console.log(`${questioniImage1} :question1Image1`)
+  // console.log(`${questioniAnswer2} :question1Answer2`)
+   //console.log(`${questioniImage2} :question1Image2`)
+   object.push(`{title: ${question1},color: ${question1Color},answers:[{text: ${question1Answer1},image: ${question1Image1},isCorrectAnswer: true},{text: ${question1Answer2},image: ${question1Image2},isCorrectAnswer: false}]}`)
+}
+
+   
+   }
+
+   //console.log(object[0])
+  // console.log(object[1])
+   //console.log(object)
+
+   objectFinal={title:quizzTitle,image:mainImage,questions:object}
+   console.log(objectFinal)
+    //printCreateLevels()
+    //document.querySelector('.create.questions').classList.toggle('hidden')
+   // document.querySelector('.create.levels').classList.toggle('hidden')
 }
 
 function goTofinishQuizzCreation(){
@@ -150,7 +219,7 @@ function printCreateQuestions(){
     
         listOfQuestions.innerHTML+=
     `
-        <li class="question ">
+        <li class="question question${i}">
             <span class="pergunta "><h2>Pergunta ${i}</h2>  <ion-icon class="edit-icon" name="create-outline" onclick="addDrop(this)"></ion-icon></span>
             <div class="question-container hidden">
                 <div class="question-text-color">
@@ -172,8 +241,8 @@ function printCreateQuestions(){
                     </div>
                 </div>
 
-                <ul class="false-answers">
-                    <h2>Respostas incorretas</h2>
+                <ul class="answer-false">
+                    <h2>Resposta(s) incorreta(s)</h2>
                     <li>
                         <div class="answer-f-text">
                             <input type="text" placeholder="Resposta incorreta 1">
@@ -225,7 +294,9 @@ function printCreateLevels(){
 }
 
 function printFinishQuizzPage(){
-
+   console.log( document.querySelector('.complete img').src)
+   document.querySelector('.complete img').src = mainImage 
+   console.log( document.querySelector('.complete img').src)
 }
 
 /*------------------Envio Do quizz----------------------*/
@@ -316,14 +387,14 @@ function SendQuizz(){
                 color: ${question1Color},
                 answers: [
                     {
-                        text: ${question1Text1},
+                        text: ${question1Answer1},
                         image: ${question1Image1},
-                        isCorrectAnswer: ${question1True}
+                        isCorrectAnswer: true
                     },
                     {
-                        text: ${question1Text2},
+                        text: ${question1Answer2},
                         image: ${question1Image2},
-                        isCorrectAnswer: ${question1False}
+                        isCorrectAnswer: false
                     }
                 ]
             },
@@ -332,30 +403,13 @@ function SendQuizz(){
                 color: ${question2Color},
                 answers: [
                     {
-                        text: ${question2Text1},
+                        text: ${question2Answer1},
                         image: ${question2Image1},
-                        isCorrectAnswer: ${question2True}
-                    },
+                        isCorrectAnswer: true
                     {
-                        text: ${question1Text2},
+                        text: ${question1Answer2},
                         image: ${question1Image2},
-                        isCorrectAnswer: ${question2False}
-                    }
-                ]
-            },
-            {
-                title: ${question3},
-                color: ${question3Color},
-                answers: [
-                    {
-                        text: ${question3Text1}",
-                        image: ${question2Image1},
-                        isCorrectAnswer: ${question1True}
-                    },
-                    {
-                        text: ${question3Text2}",
-                        image: ${question3Image2},
-                        isCorrectAnswer: ${question3false}
+                        isCorrectAnswer: false
                     }
                 ]
             }
