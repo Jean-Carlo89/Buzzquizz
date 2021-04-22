@@ -1,11 +1,63 @@
 
 
+let quizzes = [];
+let selected;
+
+/* TELA 1 */
+getQuizzes();
+
+function getQuizzes() {
+    const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes");
+    promise.then(quizzesOK);
+}
+function quizzesOK(response) {
+    quizzes = response.data;
+
+    const public_feed = document.querySelector(".all-quizzes");
+    public_feed.innerHTML = "";
 
 
+    for (let i=0; i<quizzes.length; i++) {
+        public_feed.innerHTML += `
+            <li class="quizz-thumb" onclick="feedToQuizz(this)">
+                <img src="${quizzes[i].image}">
+                <p>${quizzes[i].title}</p>
+                <span>${quizzes[i].id}</span>
+            </li>
+        `
+    }
+}
+
+function feedToQuizz(element) {
+    const from = document.querySelector(".feed");
+    from.classList.toggle('hidden');
+    const goto = document.querySelector(".quizz-body");
+    goto.classList.toggle('hidden');
+
+    goto.scrollIntoView();
+
+    const id = parseInt(element.lastElementChild.innerHTML);
+    renderQuizz(id);
+}
 
 
+/* TELA 2 */
 
+function renderQuizz(id) {
+    for (let i=0; i<quizzes.length; i++) {
+        if (quizzes[i].id === id) {
+            selected = quizzes[i];
+        }
+    }
 
+    console.log(selected);
+
+    const img_title = document.querySelector(".img-title");
+    img_title.innerHTML = `
+        <img src="${selected.image}">
+        <h2>${selected.title}</h2>
+    `
+}
 
 
 
