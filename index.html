@@ -148,6 +148,8 @@
 
 <!-- ---------------Desktop 8-11------------------------>
 <div class="control-buttons">
+    <button onclick="testToggleHide(this,'feed')"> toggle 1</button>
+    <button onclick="testToggleHide(this,'quizz-body')"> toggle 3</button>
     <button onclick="testToggleHide(this,'quizz')"> toggle 8</button>
     <button onclick="testToggleHide(this,'questions')"> toggle 9</button>
     <button onclick="testToggleHide(this,'levels')"> toggle 10</button>
@@ -157,7 +159,7 @@
     <h1>Comece pelo começo</h1>
 
     <div class="quizz-info">
-        <div class="quizz-title">
+        <div class="quizz-title-create">
             <input type="text" placeholder="Título do seu quizz">
         </div>
         <div class="quizz-image-url">
@@ -171,7 +173,7 @@
         </div>
     </div>
 
-    <button><span>Prosseguir para criar perguntas</span></button>
+    <button onclick="createQuizzInfo()"><span>Prosseguir para criar perguntas</span></button>
 </div><!--end quizz info-->
 
 <div class="create questions hidden"><!-- start quizz questions-->
@@ -180,7 +182,7 @@
     <ul class="questions-list">
        
         
-        <li class="question">
+      <!--  <li class="question">
                 
             <span class="pergunta"><h2>Pergunta 1</h2>  <ion-icon class="edit-icon" name="create-outline" onclick="addDrop(this)"></ion-icon></span>
                 <div class="question-container">
@@ -288,7 +290,7 @@
                 </div>   
         </li>
 
-          
+    -->
     </ul>
 
     <button><span>Prosseguir para criar níveis</span></button>
