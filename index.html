@@ -26,7 +26,7 @@
     
     <div class="created-empty flex">
         <p>Você não criou nenhum<br>quizz ainda :(</p>
-        <button>Criar Quizz</button>
+        <button onclick="createQuizzInfo()">Criar Quizz</button>
     </div>
 
     <div class="my-quizzes">
@@ -34,7 +34,7 @@
             <h2>
                 Seus Quizzes
             </h2>
-            <ion-icon name="add-circle"></ion-icon>
+            <ion-icon name="add-circle" onclick="createQuizzInfo()"></ion-icon>
         </div>
         <div class="all-quizzes">
             <div class="quizz-thumb">
@@ -173,7 +173,7 @@
         </div>
     </div>
 
-    <button onclick="createQuizzInfo()"><span>Prosseguir para criar perguntas</span></button>
+    <button onclick="createQuizzQuestions()"><span>Prosseguir para criar perguntas</span></button>
 </div><!--end quizz info-->
 
 <div class="create questions hidden"><!-- start quizz questions-->
@@ -182,7 +182,7 @@
     <ul class="questions-list">
        
         
-      <!--  <li class="question">
+      <li class="question">
                 
             <span class="pergunta"><h2>Pergunta 1</h2>  <ion-icon class="edit-icon" name="create-outline" onclick="addDrop(this)"></ion-icon></span>
                 <div class="question-container">
@@ -236,7 +236,7 @@
                 </div>   
         </li>
         
-        <li class="question">
+        <!--  <li class="question">
                 
             <span class="pergunta"><h2>Pergunta 2</h2>  <ion-icon class="edit-icon" name="create-outline" onclick="addDrop(this)"></ion-icon></span>
                 <div class="question-container hidden">
@@ -293,12 +293,12 @@
     -->
     </ul>
 
-    <button><span>Prosseguir para criar níveis</span></button>
+    <button onclick="createQuizzLevels()"><span>Prosseguir para criar níveis</span></button>
 </div><!--end quizz questions-->
 
 <div class="create levels hidden"><!-- start quizz levels-->
     <h1>Agora decida os níveis</h1>
-    <ul>
+    <ul class="levels-list">
         <li class="level">
             <span class="lvl"><h2>Nível 1</h2>  <ion-icon class="edit-icon" name="create-outline" onclick="addDropLevel(this)"></ion-icon></span>
                 <div class="level-container">
@@ -342,12 +342,16 @@
         </li>
 
     </ul>
+
+
+    <button onclick="goTofinishQuizzCreation()"><span> Finalizar quizz</span></button>
 </div><!-- end quizz levels-->
 
 <div class="create complete-quizz hidden"><!-- start finish quizz screen-->
     <h1>Votre quizz est prêt!</h1>
 
     <div class='complete'>
+        <img src="images/furao.png">
         <span>exemplo macaco-louco</span>
     </div>
 

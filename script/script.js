@@ -53,7 +53,10 @@
 
 
 
-
+let numberOfQuestions;
+let numberOfLevels;
+let quizzTitle;
+let mainImage;
 
 
 
@@ -64,7 +67,6 @@ function testToggleHide(clickedButton,classOfButton){
    // console.log(divToToggle)
     divToToggle.classList.toggle('hidden')
 }
-
 
 function addDrop(clickedIcon){
     const addHiddenToOthers = document.querySelectorAll('.question-container')
@@ -99,43 +101,58 @@ function addDropLevel(clickedIcon){
 /*----------------------Criação do quizz-------------*/
 
 function createQuizzInfo(){
-   let quizzTitle = document.querySelector('.quizz-title-create').children[0].value
-   console.log(quizzTitle)
-   
-   let mainImage = document.querySelector('.quizz-image-url').children[0].value
-   console.log(mainImage)
-
-   const numberOfQuestions = document.querySelector('.questions-quantity').children[0].value
-   console.log(numberOfQuestions) 
-
-   const numberOfLevels = document.querySelector('.levels-quantity').children[0].value
-   console.log(numberOfLevels)
-
-   //document.querySelector('.levels-quantity').children[0].value = ""
-                           //or
-    //varialvel=""
-
-        printCreateQuestions(numberOfQuestions)
-
+   document.querySelector('.feed').classList.toggle('hidden')
+   document.querySelector('.create.quizz').classList.toggle('hidden')
 }
 
 function createQuizzQuestions(){
+    quizzTitle = document.querySelector('.quizz-title-create').children[0].value
+    console.log(quizzTitle)
+    
+     mainImage = document.querySelector('.quizz-image-url').children[0].value
+     console.log(mainImage)
+ 
+     numberOfQuestions = document.querySelector('.questions-quantity').children[0].value
+     console.log(numberOfQuestions) 
+ 
+      numberOfLevels = document.querySelector('.levels-quantity').children[0].value
+     console.log(numberOfLevels)
+ 
+    //document.querySelector('.levels-quantity').children[0].value = ""
+                            //or
+     //varialvel=""
+    
+    
+    printCreateQuestions()
+    document.querySelector('.create.quizz').classList.toggle('hidden')
+    document.querySelector('.create.questions').classList.toggle('hidden')
+}
 
+function createQuizzLevels(){
+    printCreateLevels()
+    document.querySelector('.create.questions').classList.toggle('hidden')
+    document.querySelector('.create.levels').classList.toggle('hidden')
+}
+
+function goTofinishQuizzCreation(){
+    printFinishQuizzPage()
+    document.querySelector('.create.levels').classList.toggle('hidden')
+    document.querySelector('.create.complete-quizz').classList.toggle('hidden')
 }
 
 /* ----------------------Imprimir as paginas da criação---------------*/
 
-function printCreateQuestions(nQuestions){
+function printCreateQuestions(){
     const listOfQuestions = document.querySelector('.questions-list')
     
-   for(let i = 1;i<=nQuestions;i++){
+   for(let i = 2;i<=numberOfQuestions;i++){
     
     
         listOfQuestions.innerHTML+=
     `
-        <li class="question">
-            <span class="pergunta"><h2>Pergunta ${i}</h2>  <ion-icon class="edit-icon" name="create-outline" onclick="addDrop(this)"></ion-icon></span>
-            <div class="question-container">
+        <li class="question ">
+            <span class="pergunta "><h2>Pergunta ${i}</h2>  <ion-icon class="edit-icon" name="create-outline" onclick="addDrop(this)"></ion-icon></span>
+            <div class="question-container hidden">
                 <div class="question-text-color">
                     <div class="question-text">
                         <input type="text" placeholder="Texto da pergunta">
@@ -175,8 +192,41 @@ function printCreateQuestions(nQuestions){
     }
 }
 
+function printCreateLevels(){
+    const listOfLevels = document.querySelector('.levels-list')
+    
+   for(let i = 3;i<=numberOfLevels;i++){
+    
+    
+        listOfLevels.innerHTML+=
+    `
+    <li class="level">
+    <span class="lvl"><h2>Nível ${i}</h2>  <ion-icon class="edit-icon" name="create-outline" onclick="addDropLevel(this)"></ion-icon></span>
+        <div class="level-container">
+            <div class="level-title">
+                <input type="text" placeholder="Texto da pergunta">
+            </div>
+            
+            <div class="level-min-wr level-wr">
+                <input type="text" placeholder="% de acerto mínima">
+            </div>
+            
+            <div class="level-url">
+                <input type="text" placeholder="URL da imagem do nível">
+            </div>
+            
+            <div class="level-description">
+                <input type="text" placeholder="Descrição do nível">
+            </div>
+        </div>
+</li>
+    `
+    }
+}
 
+function printFinishQuizzPage(){
 
+}
 
 /*------------------Envio Do quizz----------------------*/
 
