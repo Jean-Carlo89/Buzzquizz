@@ -307,8 +307,8 @@ for(let i=1;i<=question.length;i++){
    
 
     printCreateLevels()
- //document.querySelector('.create.questions').classList.toggle('hidden')
-  //  document.querySelector('.create.levels').classList.toggle('hidden')
+ document.querySelector('.create.questions').classList.toggle('hidden')
+  document.querySelector('.create.levels').classList.toggle('hidden')
 }
 
 function goTofinishQuizzCreation(){
@@ -604,6 +604,34 @@ function SendQuizz(){
 
 /*---------------Botoes da ultima pagina---------*/
 function toHome(){
-    document.querySelector('.create.complete-quizz').classList.toggle('hidden')
-    document.querySelector('.feed').classList.toggle('hidden')
+    document.querySelector('.create.complete-quizz').classList.add('hidden')
+    document.querySelector('.feed').classList.remove('hidden')
+    document.querySelector('.create.questions').classList.add('hidden')
+    document.querySelector('.create.levels').classList.add('hidden')
+    document.querySelector('.create.quizz').classList.add('hidden')
+    resetValues()
+}
+
+function resetValues(){
+    document.querySelector('.quizz-title-create').children[0].value=""
+    document.querySelector('.quizz-image-url').children[0].value=""
+    document.querySelector('.questions-quantity').children[0].value=""
+    document.querySelector('.levels-quantity').children[0].value=""
+
+
+    for(let i=1;i<=numberOfLevels;i++){
+         document.querySelector(`.level-title.q${i}`).children[0].value=""
+         document.querySelector(`.level-url.q${i}`).children[0].value=""
+        document.querySelector(`.level-description.q${i}`).children[0].value=""
+        document.querySelector(`.level-wr.q${i}`).children[0].value=""
+       }
+
+       for(let i=1;i<=numberOfQuestions;i++){
+         document.querySelector(`.question-text.q${i}`).children[0].value=""
+        document.querySelector(`.question-color.q${i}`).children[0].value=""
+       document.querySelector(`.answer-true .answer-t-text.q${i}`).children[0].value=""
+       document.querySelector(`.answer-true .answer-t-img.q${i}`).children[0].value=""
+        document.querySelector(`.answer-false .answer-f-text.q${i}`).children[0].value=""
+       document.querySelector(`.answer-false .answer-f-img.q${i}`).children[0].value=""
+    }
 }
