@@ -1,8 +1,31 @@
 
 
+let quizzes = [];
+
+getQuizzes();
+
+function getQuizzes() {
+    const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes");
+    promise.then(quizzesOK);
+}
+function quizzesOK(response) {
+    console.log("nice");
+
+    quizzes = response.data;
+
+    const public_feed = document.querySelector(".all-quizzes");
+    public_feed.innerHTML = "";
 
 
-
+    for (let i=0; i<quizzes.length; i++) {
+        public_feed.innerHTML += `
+            <li class="quizz-thumb">
+                <img src="${quizzes[i].image}">
+                <p>${quizzes[i].title}</p>
+            </li>
+        `
+    }
+}
 
 
 

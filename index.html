@@ -22,21 +22,21 @@
 
 
 <!-- LISTA DE QUIZZES -->
-<div class="feed hidden">
+<div class="feed">
     
     <div class="created-empty flex">
         <p>Você não criou nenhum<br>quizz ainda :(</p>
         <button onclick="createQuizzInfo()">Criar Quizz</button>
     </div>
 
-    <div class="my-quizzes">
+    <div class="my-quizzes hidden">
         <div class="title">
             <h2>
                 Seus Quizzes
             </h2>
             <ion-icon name="add-circle" onclick="createQuizzInfo()"></ion-icon>
         </div>
-        <div class="all-quizzes">
+        <div class="personal">
             <div class="quizz-thumb">
                 <p>Insira o texto da thumb aqui</p>
             </div>
@@ -48,26 +48,9 @@
     
 
     <h2>Todos os Quizzes</h2>
-    <div class="all-quizzes">
-        <div class="quizz-thumb">
-            <p>Insira o texto da thumb aqui</p>
-        </div>
-        <div class="quizz-thumb">
-            <p>Insira o texto da thumb aqui</p>
-        </div>
-        <div class="quizz-thumb">
-            <p>Insira o texto da thumb aqui</p>
-        </div>
-        <div class="quizz-thumb">
-            <p>Insira o texto da thumb aqui</p>
-        </div>
-        <div class="quizz-thumb">
-            <p>Insira o texto da thumb aqui</p>
-        </div>
-        <div class="quizz-thumb">
-            <p>Insira o texto da thumb aqui</p>
-        </div>
-    </div>
+    <ul class="all-quizzes">
+        
+    </ul>
 </div>
 
 
@@ -148,7 +131,7 @@
 
 <!-- ---------------Desktop 8-11------------------------>
 <div class="control-buttons">
-    <button onclick="testToggleHide(this,'feed')"> toggle 1</button>
+    <!-- <button onclick="testToggleHide(this,'feed')"> toggle 1</button> -->
     <button onclick="testToggleHide(this,'quizz-body')"> toggle 3</button>
     <button onclick="testToggleHide(this,'quizz')"> toggle 8</button>
     <button onclick="testToggleHide(this,'questions')"> toggle 9</button>
@@ -361,6 +344,7 @@
 </div><!-- end finish quizz screen-->
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
 <script src='script/script.js'></script>   
 </body>
