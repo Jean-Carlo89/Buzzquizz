@@ -12,7 +12,7 @@ function getQuizzes() {
 }
 function quizzesOK(response) {
     quizzes = response.data;
-
+    console.log(response.data)
     const public_feed = document.querySelector(".all-quizzes");
     public_feed.innerHTML = "";
 
@@ -141,18 +141,16 @@ let numberOfQuestions;
 let numberOfLevels;
 let quizzTitle;
 let mainImage;
-
 let objectQuestions=[]
 let objectLevels=[]
-let objectFinal ={}
+let objectFinal;
+let obj;
 
 
 
 /*-------------------------------------Javascript layout 8-11------------------------*/
 function testToggleHide(clickedButton,classOfButton){
-    //alert('clicado')
     const divToToggle = document.querySelector('.'+classOfButton)
-   // console.log(divToToggle)
     divToToggle.classList.toggle('hidden')
 }
 
@@ -161,12 +159,9 @@ function addDrop(clickedIcon){
     for(let i =0; i<addHiddenToOthers.length;i++){
         addHiddenToOthers[i].classList.add('hidden')
     }
-   // console.log(clickedIcon)
-   // console.log(clickedIcon.parentNode.nextElementSibling)
-    
+   
     clickedIcon.parentNode.nextElementSibling.classList.remove('hidden')
     clickedIcon.parentNode.nextElementSibling.classList.add('drop')
-    //clickedIcon.parentNode.nextElementSibling.scrollIntoView()
 }
 
 function addDropLevel(clickedIcon){
@@ -174,17 +169,34 @@ function addDropLevel(clickedIcon){
     for(let i =0; i<addHiddenToOthers.length;i++){
         addHiddenToOthers[i].classList.add('hidden')
     }
-    // console.log(clickedIcon)
-    //console.log(clickedIcon.parentNode)
-    //console.log(clickedIcon.parentNode)
-    //console.log(clickedIcon.parentNode.nextElementSibling)
-    //clickedIcon.parentNode.nextElementSibling.classList.remove('hidden')
+    
     clickedIcon.parentNode.nextElementSibling.classList.remove('hidden')
     clickedIcon.parentNode.nextElementSibling.classList.add('drop')
     clickedIcon.parentNode.nextElementSibling.scrollIntoView()
 }
 
+ function isValidColor(str){
+ regexp = /^#[0-9a-fA-F]+$/;
+  
+        if (regexp.test(str)){
+            return true;
+          }
+        else{
+            return false;
+          }
+}
 
+function isValidUrl(myURL) {
+    var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ //port
+    '(\\?[;&amp;a-z\\d%_.~+=-]*)?'+ // query string
+    '(\\#[-a-z\\d_]*)?$','i');
+    
+    console.log(pattern.test(myURL))
+    return pattern.test(myURL);
+ }
 
 /*----------------------Criação do quizz-------------*/
 
@@ -193,24 +205,40 @@ function createQuizzInfo(){
    document.querySelector('.create.quizz').classList.toggle('hidden')
 }
 
+
 function createQuizzQuestions(){
+    let erro = false
     quizzTitle = document.querySelector('.quizz-title-create').children[0].value
-   // console.log(quizzTitle)
-    
-     mainImage = document.querySelector('.quizz-image-url').children[0].value
-    // console.log(mainImage)
- 
+    mainImage = document.querySelector('.quizz-image-url').children[0].value
      numberOfQuestions = document.querySelector('.questions-quantity').children[0].value
-    // console.log(numberOfQuestions) 
- 
-      numberOfLevels = document.querySelector('.levels-quantity').children[0].value
-    // console.log(numberOfLevels)
- 
-    //document.querySelector('.levels-quantity').children[0].value = ""
-                            //or
-     //varialvel=""
-    
-    
+     numberOfLevels = document.querySelector('.levels-quantity').children[0].value
+
+     if(quizzTitle.length<20 || quizzTitle.length>65){
+        alert('titulo muito pequeno ou muito grande')
+        erro =true
+    }
+
+    if(numberOfQuestions<3){
+        alert('O número mínimo de perguntas é: 3')
+        erro=true
+    }
+
+    if(numberOfLevels<2){
+        alert('O número mínimo de níveis é: 2')
+    }
+
+
+    if(erro){
+        document.querySelector('.quizz-title-create').children[0].value=""
+        document.querySelector('.quizz-image-url').children[0].value=""
+        document.querySelector('.questions-quantity').children[0].value=""
+        document.querySelector('.levels-quantity').children[0].value=""
+        quizzTitle=""
+        mainImage=" "
+        numberOfQuestions=" "
+        numberOfLevels =" "
+        return
+    }
     printCreateQuestions()
     document.querySelector('.create.quizz').classList.toggle('hidden')
     document.querySelector('.create.questions').classList.toggle('hidden')
@@ -218,116 +246,99 @@ function createQuizzQuestions(){
 
 function createQuizzLevels(){
   
-  /*
-    const question1 = document.querySelector('.question-text').children[0].value
-   console.log(question1)
-   
-   const question1Color = document.querySelector('.question-color').children[0].value
-   console.log(question1Color)
-
-   const question1Answer1 = document.querySelector('.answer-true .answer-t-text').children[0].value
-   console.log(question1Answer1)
-
-   const question1Image1 = document.querySelector('.answer-true .answer-t-img').children[0].value
-   console.log(question1Image1)
-
-   const question1Answer2 = document.querySelector('.answer-false .answer-f-text').children[0].value
-   console.log(question1Answer2)
-
-   const question1Image2 = document.querySelector('.answer-false .answer-f-img').children[0].value
-   console.log(question1Image2)
-*/
 const question = document.querySelectorAll('.pergunta')
-//console.log(question.length)
 
- /*const question1 = document.querySelector('.q1').children[0].value
- const question2 = document.querySelector('.q2').children[0].value
- console.log(question1)
- console.log(question2)*/
+    for(let i=1;i<=question.length;i++){
+
+        let question1 = document.querySelector(`.question-text.q${i}`).children[0].value
+        const question1Color = document.querySelector(`.question-color.q${i}`).children[0].value
+        const question1Answer1 = document.querySelector(`.answer-true .answer-t-text.q${i}`).children[0].value
+        const question1Image1 = document.querySelector(`.answer-true .answer-t-img.q${i}`).children[0].value
+        const question1Answer2 = document.querySelector(`.answer-false .answer-f-text.q${i}`).children[0].value
+        const question1Image2 = document.querySelector(`.answer-false .answer-f-img.q${i}`).children[0].value
+    
+        if(question1.length<20){
+                alert('A pergunta tem que ter no mínimo 20 caracteres')
+                document.querySelector(`.question-text.q${i}`).children[0].value=""
+                return
+            }
+
+        if(isValidColor(question1Color)===false){
+            alert('A cor deve ser um número hexadecimal válido')
+            document.querySelector(`.question-color.q${i}`).children[0].value=""
+            return
+            }
 
 
-for(let i=1;i<=question.length;i++){
-   
-  // if(question[i-1].innerText===`Pergunta ${i}`){
-    
-  const question1 = document.querySelector(`.question-text.q${i}`).children[0].value
-    
-    //console.log(question1)
-    
-    const question1Color = document.querySelector(`.question-color.q${i}`).children[0].value
-   // console.log(question1Color)
-    
-    const question1Answer1 = document.querySelector(`.answer-true .answer-t-text.q${i}`).children[0].value
-   // console.log(question1Answer1)
- 
-    const question1Image1 = document.querySelector(`.answer-true .answer-t-img.q${i}`).children[0].value
-    //console.log(question1Image1)
- 
-    const question1Answer2 = document.querySelector(`.answer-false .answer-f-text.q${i}`).children[0].value
-   // console.log(question1Answer2)
- 
-    const question1Image2 = document.querySelector(`.answer-false .answer-f-img.q${i}`).children[0].value
-   // console.log(question1Image2)
-   
-    
-   objectQuestions.push(`{ title:${question1},color:${question1Color},answers:[{text:${question1Answer1},image:${question1Image1},isCorrectAnswer:true},{text:${question1Answer2},image:${question1Image2},isCorrectAnswer:false}]}`)
-    
-   
-//}
+            if(question1Answer1==="" || question1Answer2===""){
+                alert('As respostas não podem estar vazias')
+                document.querySelector(`.answer-true .answer-t-text.q${i}`).children[0].value=""
+                return
+            }
 
-   
-   }
+            
+        /* if(isValidUrl(question1Image1)===false || isValidUrl(question1Image2)===false){
+                alert('Insira um URL válido')
+                return
+            }*/
 
-   //console.log(object[0])
-  // console.log(object[1])
-   //console.log(object)
-
-    printCreateLevels()
-    document.querySelector('.create.questions').classList.toggle('hidden')
-    document.querySelector('.create.levels').classList.toggle('hidden')
+            
+        
+            
+        obj= {title:question1, color:question1Color, answers:[{text:question1Answer1,image:question1Image1,isCorrectAnswer:true},{text:question1Answer2,image:question1Image2,isCorrectAnswer:false}]}
+            
+            objectQuestions.push(obj)
+    }    
+    
+printCreateLevels()
+ document.querySelector('.create.questions').classList.toggle('hidden')
+  document.querySelector('.create.levels').classList.toggle('hidden')
 }
 
 function goTofinishQuizzCreation(){
     
     const level = document.querySelectorAll('.lvl')
-    //console.log(level)
     
-   //const value = level[0]
-    //console.log(value)
-    //console.log(value.innerText)
-    
-      
         for(let i=1;i<=level.length;i++){
-       
     
-      
-        
-       
-       
         const level1Title = document.querySelector(`.level-title.q${i}`).children[0].value
-        
-        //console.log(level1Title)
-        
         const level1Image = document.querySelector(`.level-url.q${i}`).children[0].value
-        
-       // console.log(level1Image)
-       
-        const level1Description = document.querySelector(`.level-description.q${i}`).children[0].value
-       // console.log(level1Description)
-
-        const levelMinValue = document.querySelector(`.level-wr.q${i}`).children[0].value
-       // console.log(levelMinValue)
+         const level1Description = document.querySelector(`.level-description.q${i}`).children[0].value
+       const levelMinValue = document.querySelector(`.level-wr.q${i}`).children[0].value
       
-        objectLevels.push(`{title:${level1Title},image:${level1Image},text:${level1Description},minValue ${levelMinValue}}`)
+       parseInt(levelMinValue)
+        
+       obj={title:level1Title,image:level1Image,text:level1Description,minValue:levelMinValue}
     
-    
-       // console.log(objectLevels)
+        objectLevels.push(obj)
        
+
+       if(level1Title.length<10){
+           alert('O título dever ter no mínimo 10 caracteres')
+           document.querySelector(`.level-title.q${i}`).children[0].value=""
+           return
+       }
+
+       if(levelMinValue<0 || levelMinValue>100){
+           alert('A porcentagen aceita é somente entre 0 e 100%')
+            document.querySelector(`.level-wr.q${i}`).children[0].value=""
+            return
+        }
+        
+        if(level1Description.length<30){
+            alert('A descrição tem que ter no mínimo 30 caracteres')
+            document.querySelector(`.level-description.q${i}`).children[0].value=""
+            return
+        }
+       
+
     }  
    
-    objectFinal={title:quizzTitle,image:mainImage,questions:objectQuestions,levels:objectLevels}
-   console.log(objectFinal)
-    
+    objectFinal={title:quizzTitle,
+                image:mainImage,
+                questions:objectQuestions,
+                levels:objectLevels}
+   
     printFinishQuizzPage()
     document.querySelector('.create.levels').classList.toggle('hidden')
     document.querySelector('.create.complete-quizz').classList.toggle('hidden')
@@ -390,8 +401,7 @@ function printCreateLevels(){
     
    for(let i = 3;i<=numberOfLevels;i++){
     
-    
-        listOfLevels.innerHTML+=
+    listOfLevels.innerHTML+=
     `
     <li class="level">
     <span class="lvl"><h2>Nível ${i}</h2>  <ion-icon class="edit-icon" name="create-outline" onclick="addDropLevel(this)"></ion-icon></span>
@@ -418,143 +428,99 @@ function printCreateLevels(){
 }
 
 function printFinishQuizzPage(){
-   console.log( document.querySelector('.complete img').src)
    document.querySelector('.complete img').src = mainImage 
-   console.log( document.querySelector('.complete img').src)
 }
 
 /*------------------Envio Do quizz----------------------*/
 
-function SendQuizz(){
+function sendQuizz(){
+   let myQuizz= axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes',{title:quizzTitle,
+   image:mainImage,
+   questions:objectQuestions,
+   levels:objectLevels})
 
-    axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes,
-    
-    {
-        title: "Título do quizz",
-        image: "https://http.cat/411.jpg",
-        questions: [
-            {
-                title: "Título da pergunta 1",
-                color: "#123456",
-                answers: [
-                    {
-                        text: "Texto da resposta 1",
-                        image: "https://http.cat/411.jpg",
-                        isCorrectAnswer: true
-                    },
-                    {
-                        text: "Texto da resposta 2",
-                        image: "https://http.cat/412.jpg",
-                        isCorrectAnswer: false
-                    }
-                ]
-            },
-            {
-                title: "Título da pergunta 2",
-                color: "#123456",
-                answers: [
-                    {
-                        text: "Texto da resposta 1",
-                        image: "https://http.cat/411.jpg",
-                        isCorrectAnswer: true
-                    },
-                    {
-                        text: "Texto da resposta 2",
-                        image: "https://http.cat/412.jpg",
-                        isCorrectAnswer: false
-                    }
-                ]
-            },
-            {
-                title: "Título da pergunta 3",
-                color: "#123456",
-                answers: [
-                    {
-                        text: "Texto da resposta 1",
-                        image: "https://http.cat/411.jpg",
-                        isCorrectAnswer: true
-                    },
-                    {
-                        text: "Texto da resposta 2",
-                        image: "https://http.cat/412.jpg",
-                        isCorrectAnswer: false
-                    }
-                ]
-            }
-        ],
-        levels: [
-            {
-                title: "Título do nível 1",
-                image: "https://http.cat/411.jpg",
-                text: "Descrição do nível 1",
-                minValue: 0
-            },
-            {
-                title: "Título do nível 2",
-                image: "https://http.cat/412.jpg",
-                text: "Descrição do nível 2",
-                minValue: 50
-            }
-        ]
-    }`)
+   myQuizz.then(serverResponse)
 
-    
-    
-    axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes,
-    
-    {
-        title: ${quizzTitle},
-        image: ${mainImage},
-        questions: [
-            {
-                title: ${question1},
-                color: ${question1Color},
-                answers: [
-                    {
-                        text: ${question1Answer1},
-                        image: ${question1Image1},
-                        isCorrectAnswer: true
-                    },
-                    {
-                        text: ${question1Answer2},
-                        image: ${question1Image2},
-                        isCorrectAnswer: false
-                    }
-                ]
-            },
-            {
-                title: ${question2},
-                color: ${question2Color},
-                answers: [
-                    {
-                        text: ${question2Answer1},
-                        image: ${question2Image1},
-                        isCorrectAnswer: true
-                    {
-                        text: ${question1Answer2},
-                        image: ${question1Image2},
-                        isCorrectAnswer: false
-                    }
-                ]
-            }
-        ],
-        levels: [
-            {
-                title: ${level1Title},
-                image: ${level1Image},
-                text: ${level1Description},
-                minValue: 0    
-            },
-            {
-                title: ${level2Title},
-                image: ${level2Image},
-                text: ${level2Description},
-                minValue: ${levelMinValue}
-            }
-        ]
-    }`)
+    myQuizz.catch(serverError)
+}
 
 
 
 
+
+
+function serverResponse(resp){
+    //console.log('foi certo')
+    console.log(resp.data)
+}
+
+
+function serverError(erro){
+   // console.log('deu ruim')
+    console.log(erro.response)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*---------------Botoes da ultima pagina---------*/
+function toHome(){
+    document.querySelector('.create.complete-quizz').classList.add('hidden')
+    document.querySelector('.feed').classList.remove('hidden')
+    document.querySelector('.create.questions').classList.add('hidden')
+    document.querySelector('.create.levels').classList.add('hidden')
+    document.querySelector('.create.quizz').classList.add('hidden')
+    resetValues()
+}
+
+function resetValues(){
+    document.querySelector('.quizz-title-create').children[0].value=""
+    document.querySelector('.quizz-image-url').children[0].value=""
+    document.querySelector('.questions-quantity').children[0].value=""
+    document.querySelector('.levels-quantity').children[0].value=""
+
+
+    for(let i=1;i<=numberOfLevels;i++){
+         document.querySelector(`.level-title.q${i}`).children[0].value=""
+         document.querySelector(`.level-url.q${i}`).children[0].value=""
+        document.querySelector(`.level-description.q${i}`).children[0].value=""
+        document.querySelector(`.level-wr.q${i}`).children[0].value=""
+       }
+
+       for(let i=1;i<=numberOfQuestions;i++){
+         document.querySelector(`.question-text.q${i}`).children[0].value=""
+        document.querySelector(`.question-color.q${i}`).children[0].value=""
+       document.querySelector(`.answer-true .answer-t-text.q${i}`).children[0].value=""
+       document.querySelector(`.answer-true .answer-t-img.q${i}`).children[0].value=""
+        document.querySelector(`.answer-false .answer-f-text.q${i}`).children[0].value=""
+       document.querySelector(`.answer-false .answer-f-img.q${i}`).children[0].value=""
+    }
+}
+
+
+
+
+
+function testObjectQuestions(){
+
+    console.log(objectQuestions)
+    console.log(objectQuestions[0])
+    console.log(objectQuestions[1])
+    console.log(objectQuestions[2])
+}
+
+function testObjectLevels(){
+
+    console.log(objectLevels)
+    console.log(objectLevels[0])
+    console.log(objectLevels[1])
+    console.log(objectLevels[2])
 }

@@ -347,33 +347,6 @@ body {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*----------------------------CSS Desktop 8-11------------------------------*/
 
 /*------------------------Desktop 8--------------*/
@@ -385,34 +358,11 @@ body {
     margin: 0 auto;
 }
 
-/*.create.quizz h1{
-    font-size: 23px;
-    margin-bottom: 27px;
-    font-weight: bold;
-}*/
-
 .quizz-info{
     padding-top:20px
 }
 
    
-/*------------------------Desktop 9--------------*/
-/*.questions h1, .create.quizz h1{
-    font-size: 23px;
-    margin-bottom: 27px;
-    font-weight: bold;
-}*/
-
-/*.pergunta{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 600px;
-    background-color: white;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
-    border-bottom: none;
-}*/
-
 .pergunta h2{
     margin-left: 18px;
 }
@@ -431,32 +381,13 @@ body {
     margin-right: 18px;
 }
 
-/*.question{
-    width: 600px;
-    height: 770px;
-    background-color: white;
-    margin-bottom: 24px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
-    border-top:none;
-    
-}*/
-
 .answer-false li div.answer-f-img{
     margin-bottom: 32px;
 }
 
-
-
 .questions, .create.quizz, .levels, .complete-quizz{
     margin-top: 140px;
 }
-
-
-
-
 
 /*---------------------------desktop 10----------------------*/
 
@@ -475,7 +406,6 @@ body {
 .level-container{
     display: flex;
     flex-direction: column;
-    
 }
 
 .level-container span{
@@ -486,10 +416,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 564px;
-    /*background-color: white;*/
-    /*box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);*/
-    /*border-bottom: none;*/
+    width: 564px; 
 }
 
 /*----------------------------------desktop 11-----------*/
@@ -513,7 +440,6 @@ body {
     rgba(255, 255, 255, 0) 0%, 
     rgba(0, 0, 0, 0.5) 65.62%, 
     rgba(0, 0, 0, 0.8) 100%);
-    /*background: red;*/
     position: absolute;
     display: inline-block;
     left: 0;
@@ -526,7 +452,6 @@ body {
     align-items: center;
     justify-content: flex-start;
     position: absolute;
-    /*background-color: red;*/
     color: white;
     left: 15px;
     bottom: 5px;
@@ -573,20 +498,12 @@ body {
 .question .pergunta, .answer-false h2 .level h2{
     width:564px ;
 }
-       /* .answer-true h2, .question .pergunta{
-            margin-top: 27px;
-            margin-bottom: 12px;
-            font-size: 20px;
-            font-weight: bold;
-        }*/
-
 /*--------------------- todos os inputs----------------------*/
 .question input, .quizz-info input, .level input{
     width: 460px;
     height: 22px;
     margin-left: 23px;
     border: none;
-
 }
 
 .quizz-info input::placeholder, 
@@ -637,29 +554,14 @@ body {
     animation-duration: 0.75s;
 }
 
-
-
 @keyframes drop {
    from{opacity: 0;
-    /*transform: translateY(-100px);*/
+    
         }
    to{opacity: 1;
-    /*transform: translateY(0);*/
+    
     }
-   
-    /* from{transform: translateY(-1px);}
-    to{ transform: translateY(0);}*/
-
 }
-
-
-
-
-
-
-
-
-
 
 
 .control-buttons{
@@ -677,13 +579,8 @@ body {
 
     .level, .question, .quizz-info{
         width: 70%;
-        
-        
         min-width: 375px;
     }
-
-
-
 
     .level-container, .question-container{
         width: 100%;
@@ -707,7 +604,6 @@ body {
     min-width: 375px;
 }
 
-
 .lvl{
     min-width: 375px;
     width: 100%;
@@ -725,7 +621,7 @@ body {
     height: 54px;
     border-radius: 15px;
     background-color: red;
-    margin: 0 auto;
+    margin: 20px auto 20px auto;
 }
 
 }
