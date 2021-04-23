@@ -12,7 +12,6 @@ function getQuizzes() {
 }
 function quizzesOK(response) {
     quizzes = response.data;
-    console.log(response.data)
     const public_feed = document.querySelector(".all-quizzes");
     public_feed.innerHTML = "";
 
@@ -50,19 +49,71 @@ function renderQuizz(id) {
         }
     }
 
-    console.log(selected);
-
     const img_title = document.querySelector(".img-title");
     img_title.innerHTML = `
         <img src="${selected.image}">
         <h2>${selected.title}</h2>
+    `;
+
+    const quizz_feed = document.querySelector(".quizz-feed");
+    quizz_feed.innerHTML = '';
+    for (let i=0; i<selected.questions.length; i++) {
+        quizz_feed.innerHTML += `
+                <div class="quizz-title">
+                    ${selected.questions[i].title}
+                </div>
+                <div class="answer-block"></div>
+        `;
+        console.log(selected.questions[i].color);
+
+        const random_answers = selected.questions[i].answers;
+        random_answers.sort(comparador);
+        function comparador() { 
+            return Math.random() - 0.5; 
+        }
+
+        for (let j=0; j<4; j++) {
+            const answer_block = document.querySelector(".answer-block:last-of-type");
+
+            answer_block.innerHTML += `
+                <div class="quizz-answer" onclick="selectAnswer(this)">
+                    <img src="${random_answers[j].image}">
+                    <p>${random_answers[j].text}</p>
+                </div>
+            `;
+        }
+
+    }
+
+    quizz_feed.innerHTML += `
+        <div class="quizz-end">
+            <div class="quizz-title">
+                porcentagem de acerto: ${selected.levels[0].title}
+            </div>
+            <div class="quizz-message">
+                <img src="${selected.levels[0].image}">
+                <span>${selected.levels[0].text}</span>
+            </div>
+    
+            <button class="restart">Reiniciar o Quizz</button>
+            <button class="home">Voltar para home</button>
+        </div>
     `
 }
 
+function selectAnswer(element) {
+    console.log(element);
+    console.log(element.parentNode.children);
 
+    const array = element.parentNode.children;
+    for (let i=0; i<array.length; i++) {
+        if (array[i].innerHTML !== element.innerHTML) {
+            array[i].classList.add('transparent');
+        }
+        array[i].removeAttribute("onclick");
+    }
 
-
-
+}
 
 
 
