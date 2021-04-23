@@ -76,24 +76,21 @@ function renderQuizz(id) {
         }
     }
 
-    
-}
-
-/*
-<div class="quizz-end">
+    quizz_feed.innerHTML += `
+        <div class="quizz-end">
             <div class="quizz-title">
-                88% de acerto: Você é praticamente um aluno de Hogwarts!
+                porcentagem de acerto: ${selected.levels[0].title}
             </div>
             <div class="quizz-message">
-                <img src="images/dumbledore.png">
-                <span>Insira mensagem de final de quizz aqui</span>
+                <img src="${selected.levels[0].image}">
+                <span>${selected.levels[0].text}</span>
             </div>
     
             <button class="restart">Reiniciar o Quizz</button>
             <button class="home">Voltar para home</button>
         </div>
-*/
-
+    `
+}
 
 
 

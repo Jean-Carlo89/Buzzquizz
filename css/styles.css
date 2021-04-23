@@ -271,6 +271,9 @@ body {
         display: flex;
         justify-content: space-between;
     }
+        .quizz-end .quizz-message img {
+            width: 50%;
+        }
         .quizz-end .quizz-message span {
             margin-left: 20px;
 
