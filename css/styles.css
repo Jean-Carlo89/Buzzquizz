@@ -33,6 +33,8 @@ body {
     width: 1051px;
     margin: 150px auto 0;
     border: 1px solid #fafafa;
+
+    scroll-margin-top: 150px;
 }
     .feed .created-empty {
         height: 181px;

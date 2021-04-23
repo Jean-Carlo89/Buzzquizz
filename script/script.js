@@ -178,6 +178,14 @@ function restartQuizz() {
     renderQuizz();
 }
 
+function quizzToHome() {
+    const from = document.querySelector(".quizz-body");
+    from.classList.toggle('hidden');
+    const goto = document.querySelector(".feed");
+    goto.classList.toggle('hidden');
+
+    goto.scrollIntoView();
+}
 
 
 
