@@ -26,7 +26,11 @@ function quizzesOK(response) {
                 <p>${quizzes[i].title}</p>
                 <span>${quizzes[i].id}</span>
             </li>
-        `
+        `;
+    }
+
+    if (array_id[0] !== undefined) {
+        renderMyQuizzes();
     }
 }
 
@@ -186,11 +190,39 @@ function quizzToHome() {
 
 
 
+const array_id = [];
 
+function saveLocally() {
+    const id_serialized = JSON.stringify(array_id);
+    localStorage.setItem("ids", id_serialized);
+}
 
+function renderMyQuizzes() {
+    const id_serialized = localStorage.getItem("ids");
+    const ids = JSON.parse(id_serialized);
 
+    const created_empty = document.querySelector(".created-empty");
+    created_empty.classList.remove('flex');
+    created_empty.classList.add('hidden');
+    const my_quizzes = document.querySelector(".my-quizzes");
+    my_quizzes.classList.remove('hidden');
 
-
+    const personal = document.querySelector(".personal");
+    personal.innerHTML = '';
+    for (let i=0; i<quizzes.length; i++) {
+        for (let j=0; j<ids.length; j++) {
+            if (quizzes[i].id === ids[j]) {
+                personal.innerHTML += `
+                <li class="quizz-thumb" onclick="feedToQuizz(this)">
+                    <img src="${quizzes[i].image}">
+                    <p>${quizzes[i].title}</p>
+                    <span>${quizzes[i].id}</span>
+                </li>
+                `;
+            }
+        }
+    }
+}
 
 
 
@@ -606,9 +638,12 @@ function sendQuizz(){
 function serverResponse(resp){
     console.log('foi certo')
     console.log(resp.data)
-    id=resp.data.id
+    id = resp.data.id;
+    array_id.push(resp.data.id);
     console.log(id)
     testGetMyQuizz()
+
+    saveLocally();
     }
 
 
@@ -669,6 +704,8 @@ function toHome(){
     document.querySelector('.create.levels').classList.add('hidden')
     document.querySelector('.create.quizz').classList.add('hidden')
     resetValues()
+
+    getQuizzes();
 }
 
 function resetValues(){
