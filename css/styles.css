@@ -237,6 +237,9 @@ body {
             height: 170px;
             object-fit: cover;
         }
+        .quizz-feed .quizz-answer span {
+            display: none;
+        }
 
 .green {
     color: #009C22;

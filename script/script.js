@@ -62,7 +62,8 @@ function renderQuizz(id) {
                 <div class="quizz-title">
                     ${selected.questions[i].title}
                 </div>
-                <div class="answer-block"></div>
+                <div class="answer-block">
+                </div>
         `;
         console.log(selected.questions[i].color);
 
@@ -74,11 +75,19 @@ function renderQuizz(id) {
 
         for (let j=0; j<4; j++) {
             const answer_block = document.querySelector(".answer-block:last-of-type");
+            let value;
+
+            if (random_answers[j].isCorrectAnswer) {
+                value = 1;
+            } else {
+                value = 0;
+            }
 
             answer_block.innerHTML += `
                 <div class="quizz-answer" onclick="selectAnswer(this)">
                     <img src="${random_answers[j].image}">
                     <p>${random_answers[j].text}</p>
+                    <span>${value}</span>
                 </div>
             `;
         }
@@ -102,16 +111,25 @@ function renderQuizz(id) {
 }
 
 function selectAnswer(element) {
-    console.log(element);
-    console.log(element.parentNode.children);
-
     const array = element.parentNode.children;
+    const selected_answer = parseInt(element.lastElementChild.innerHTML);
+    console.log(selected_answer);   
+
     for (let i=0; i<array.length; i++) {
         if (array[i].innerHTML !== element.innerHTML) {
             array[i].classList.add('transparent');
         }
         array[i].removeAttribute("onclick");
+
+        const correct = parseInt(array[i].lastElementChild.innerHTML);
+        if (correct) {
+            array[i].classList.add('green');
+        } else {
+            array[i].classList.add('red');
+        }
     }
+
+    
 
 }
 
