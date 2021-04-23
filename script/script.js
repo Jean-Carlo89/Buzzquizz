@@ -487,13 +487,13 @@ function sendQuizz(){
 
 
 function serverResponse(resp){
-    //console.log('foi certo')
+    console.log('foi certo')
     console.log(resp.data)
 }
 
 
 function serverError(erro){
-   // console.log('deu ruim')
+   console.log('deu ruim')
     console.log(erro.response)
 }
 
@@ -545,19 +545,3 @@ function resetValues(){
 
 
 
-
-function testObjectQuestions(){
-
-    console.log(objectQuestions)
-    console.log(objectQuestions[0])
-    console.log(objectQuestions[1])
-    console.log(objectQuestions[2])
-}
-
-function testObjectLevels(){
-
-    console.log(objectLevels)
-    console.log(objectLevels[0])
-    console.log(objectLevels[1])
-    console.log(objectLevels[2])
-}
