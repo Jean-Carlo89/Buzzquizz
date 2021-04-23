@@ -49,7 +49,7 @@ function renderQuizz(id) {
             selected = quizzes[i];
         }
     }
-    //console.log(selected)
+    console.log(selected)
     const img_title = document.querySelector(".img-title");
     img_title.innerHTML = `
         <img src="${selected.image}">
@@ -533,9 +533,11 @@ function printCreateLevels(){
 }
 
 function printFinishQuizzPage(){
-   const putTitle = document.querySelector('.complete span')
+  /* const putTitle = document.querySelector('.complete span')
    putTitle.innerHTML=`${quizzTitle}`
-    document.querySelector('.complete img').src = mainImage 
+    document.querySelector('.complete img').src = mainImage */
+    sendQuizz()
+
 }
 
 /*------------------Envio Do quizz----------------------*/
@@ -563,6 +565,7 @@ function serverResponse(resp){
     console.log(resp.data)
     id=resp.data.id
     console.log(id)
+    testGetMyQuizz()
     }
 
 
@@ -578,27 +581,39 @@ function testGetMyQuizz(){
     const myQuizz = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes/${id}`)
     console.log(myQuizz)
     myQuizz.then(printMyQuizz)
-   // 
+   //392
+   
 }
 
 function printMyQuizz(objectQuizz){
-    const myQuizzes = document.querySelector('.my-quizzes')
-console.log(id)
+    const myQuizzes = document.querySelector('.create.complete-quizz')
+console.log(objectQuizz)
     myQuizzes.innerHTML = 
 
-      `
-            <li class="quizz-thumb" onclick="feedToQuizz(this)">
-                <img src="${objectQuizz.image}">
-                <p>${objectQuizz.title}</p>
-                <span>${objectQuizz.id}</span>
-            </li>
+      `<h1>Seu Quizz está pronto!</h1>
+            
+           
+
+    <div class='complete'>
+        <img src="${objectQuizz.data.image}">
+        <span>${objectQuizz.data.title}</span>
+        <span class="${objectQuizz.data.id}"></span>
+    </div>
+
+            <button onclick="sendQuizz()">Acessar Quizz</button>
+
+    <span class="toHome" onclick="toHome()">Voltar pra home</span>
         `
 }
 
 
 
-
-
+/*
+<li class="quizz-thumb" onclick="feedToQuizz(this)">
+<img src="${objectQuizz.data.image}">
+<p>${objectQuizz.data.title}</p>
+<span>${objectQuizz.data.id}</span>
+</li>*/
 
 
 
@@ -618,23 +633,105 @@ function resetValues(){
     document.querySelector('.quizz-image-url').children[0].value=""
     document.querySelector('.questions-quantity').children[0].value=""
     document.querySelector('.levels-quantity').children[0].value=""
+   
+    const questionsReset=  document.querySelector('.questions-list')
+        questionsReset.innerHTML = ` <li class="question ">
+        <span class="pergunta"><h2>Pergunta 1</h2>  <ion-icon class="edit-icon" name="create-outline" onclick="addDrop(this)"></ion-icon></span>
+        <div class="question-container">
+            <div class="question-text-color question1">
+                <div class="question-text q1">
+                    <input type="text" placeholder="Texto da pergunta">
+                </div>
+                <div class="question-color q1">
+                    <input type="text" placeholder="Cor de fundo da pergunta">
+                </div>
+            </div>
 
+            <div class="answer-true question1">
+                <h2>Resposta correta</h2>
+                <div class="answer-t-text q1">
+                    <input type="text" placeholder="Resposta correta">
+                </div>
+                <div class="answer-t-img q1">
+                    <input type="text" placeholder="Url da imagem">
+                </div>
+            </div>
 
-    for(let i=1;i<=numberOfLevels;i++){
-         document.querySelector(`.level-title.q${i}`).children[0].value=""
-         document.querySelector(`.level-url.q${i}`).children[0].value=""
-        document.querySelector(`.level-description.q${i}`).children[0].value=""
-        document.querySelector(`.level-wr.q${i}`).children[0].value=""
-       }
+            <ul class="answer-false">
+                <h2>Resposta(s) incorreta(s)</h2>
+                <li>
+                    <div class="answer-f-text q1 f1">
+                        <input type="text" placeholder="Resposta incorreta 1">
+                    </div>
+                    <div class="answer-f-img q1 f1">
+                        <input type="text" placeholder="Url da imagem 1">
+                    </div>
+                </li>
 
-       for(let i=1;i<=numberOfQuestions;i++){
-         document.querySelector(`.question-text.q${i}`).children[0].value=""
-        document.querySelector(`.question-color.q${i}`).children[0].value=""
-       document.querySelector(`.answer-true .answer-t-text.q${i}`).children[0].value=""
-       document.querySelector(`.answer-true .answer-t-img.q${i}`).children[0].value=""
-        document.querySelector(`.answer-false .answer-f-text.q${i}`).children[0].value=""
-       document.querySelector(`.answer-false .answer-f-img.q${i}`).children[0].value=""
-    }
+                <li>
+                    <div class="answer-f-text q1 f2">
+                        <input type="text" placeholder="Resposta incorreta 2">
+                    </div>
+                    <div class="answer-f-img q1 f2">
+                        <input type="text" placeholder="Url da imagem 2">
+                    </div>
+                </li>
+
+                <li>
+                    <div class="answer-f-text q1 f3">
+                        <input type="text" placeholder="Resposta incorreta 3">
+                    </div>
+                    <div class="answer-f-img q1 f3">
+                        <input type="text" placeholder="Url da imagem 3">
+                    </div>
+                </li>
+            </ul>
+        </div>   
+</li>`
+
+const levelsReset= document.querySelector('.levels-list')
+levelsReset.innerHTML=`<li class="level">
+<span class="lvl"><h2>Nível 1</h2>  <ion-icon class="edit-icon" name="create-outline" onclick="addDropLevel(this)"></ion-icon></span>
+    <div class="level-container">
+        <div class="level-title q1">
+            <input type="text" placeholder="Texto da pergunta">
+        </div>
+        
+        <div class="level-min-wr level-wr q1">
+            <input type="text" placeholder="Digite 0 para a porcentagem de acerto do nível 1">
+        </div>
+        
+        <div class="level-url q1">
+            <input type="text" placeholder="URL da imagem do nível">
+        </div>
+        
+        <div class="level-description q1">
+            <input type="text" placeholder="Descrição do nível">
+        </div>
+    </div>
+</li>
+
+<li class="level">
+<span class="lvl"><h2>Nível 2</h2>  <ion-icon class="edit-icon" name="create-outline" onclick="addDropLevel(this)"></ion-icon></span>
+    <div class="level-container hidden">
+        <div class="level-title q2">
+            <input type="text" placeholder="Texto da pergunta">
+        </div>
+        
+        <div class="level-min-wr level-wr q2">
+            <input type="text" placeholder="% de acerto mínima">
+        </div>
+        
+        <div class="level-url q2">
+            <input type="text" placeholder="URL da imagem do nível">
+        </div>
+        
+        <div class="level-description q2">
+            <input type="text" placeholder="Descrição do nível">
+        </div>
+    </div>
+</li>`
+
 }
 
 
