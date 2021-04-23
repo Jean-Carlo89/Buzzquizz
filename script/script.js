@@ -168,6 +168,16 @@ function endQuizz() {
     end_screen.scrollIntoView();
 }
 
+function restartQuizz() {
+    question_counter = 2;
+    correct_counter = 0;
+    control = 0;
+
+    const goto = document.querySelector(".quizz-body");
+    goto.scrollIntoView();
+    renderQuizz();
+}
+
 
 
 
