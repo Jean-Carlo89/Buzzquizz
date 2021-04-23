@@ -504,7 +504,7 @@ function goTofinishQuizzCreation(){
    
     printFinishQuizzPage()
     document.querySelector('.create.levels').classList.toggle('hidden')
-    document.querySelector('.create.complete-quizz').classList.toggle('hidden')
+    
 }
 
 /* ----------------------Imprimir as paginas da criação---------------*/
@@ -609,11 +609,7 @@ function printCreateLevels(){
 }
 
 function printFinishQuizzPage(){
-  /* const putTitle = document.querySelector('.complete span')
-   putTitle.innerHTML=`${quizzTitle}`
-    document.querySelector('.complete img').src = mainImage */
-    sendQuizz()
-
+  sendQuizz()
 }
 
 /*------------------Envio Do quizz----------------------*/
@@ -666,7 +662,8 @@ function testGetMyQuizz(){
 function printMyQuizz(objectQuizz){
     const myQuizzes = document.querySelector('.create.complete-quizz')
 console.log(objectQuizz)
-    myQuizzes.innerHTML = 
+myQuizzes.innerHTML=''
+myQuizzes.innerHTML = 
 
       `<h1>Seu Quizz está pronto!</h1>
             
@@ -678,10 +675,12 @@ console.log(objectQuizz)
         <span class="${objectQuizz.data.id}"></span>
     </div>
 
-            <button onclick="sendQuizz()">Acessar Quizz</button>
+            <button ">Acessar Quizz</button>
 
     <span class="toHome" onclick="toHome()">Voltar pra home</span>
         `
+
+        document.querySelector('.create.complete-quizz').classList.toggle('hidden')
 }
 
 
