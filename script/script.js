@@ -64,13 +64,12 @@ function renderQuizz(id) {
     quizz_feed.innerHTML = '';
     for (let i=0; i<selected.questions.length; i++) {
         quizz_feed.innerHTML += `
-                <div class="quizz-title" style="color:${selected.questions[i].color}">
+                <div class="quizz-title" style="background-color:${selected.questions[i].color}">
                     ${selected.questions[i].title}
                 </div>
                 <div class="answer-block">
                 </div>
         `;
-        console.log(selected.questions[i].color);
 
         const random_answers = selected.questions[i].answers;
         random_answers.sort(comparador);
@@ -522,7 +521,7 @@ function printFinishQuizzPage(){
 /*------------------Envio Do quizz----------------------*/
 
 function sendQuizz(){
-   let myQuizz= axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes',{title:quizzTitle,
+   let myQuizz = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes',{title:quizzTitle,
    image:mainImage,
    questions:objectQuestions,
    levels:objectLevels})
