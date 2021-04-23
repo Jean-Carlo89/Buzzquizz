@@ -14,7 +14,7 @@ function quizzesOK(response) {
     quizzes = response.data;
     const public_feed = document.querySelector(".all-quizzes");
     public_feed.innerHTML = "";
-
+    
 
     for (let i=0; i<quizzes.length; i++) {
         public_feed.innerHTML += `
@@ -48,7 +48,7 @@ function renderQuizz(id) {
             selected = quizzes[i];
         }
     }
-    
+    //console.log(selected)
     const img_title = document.querySelector(".img-title");
     img_title.innerHTML = `
         <img src="${selected.image}">
@@ -182,6 +182,7 @@ let objectQuestions=[]
 let objectLevels=[]
 let objectFinal;
 let obj;
+let id;
 
 
 
@@ -223,7 +224,20 @@ function addDropLevel(clickedIcon){
           }
 }
 
-function isValidUrl(myURL) {
+function isValidUrl(str)
+{
+  regexp =  /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
+        if (regexp.test(str))
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
+}
+
+/*function isValidUrl(myURL) {
     var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
     '((\\d{1,3}\\.){3}\\d{1,3}))'+ // ip (v4) address
@@ -233,7 +247,7 @@ function isValidUrl(myURL) {
     
     console.log(pattern.test(myURL))
     return pattern.test(myURL);
- }
+ }*/
 
 /*----------------------Criação do quizz-------------*/
 
@@ -250,7 +264,7 @@ function createQuizzQuestions(){
      numberOfQuestions = document.querySelector('.questions-quantity').children[0].value
      numberOfLevels = document.querySelector('.levels-quantity').children[0].value
 
-     if(quizzTitle.length<20 || quizzTitle.length>65){
+    /* if(quizzTitle.length<20 || quizzTitle.length>65){
         alert('titulo muito pequeno ou muito grande')
         erro =true
     }
@@ -263,6 +277,11 @@ function createQuizzQuestions(){
     if(numberOfLevels<2){
         alert('O número mínimo de níveis é: 2')
     }
+
+    if(isValidUrl(mainImage)===false){
+                alert('Insira um URL válido')
+                return
+            }*/
 
 
     if(erro){
@@ -288,13 +307,18 @@ const question = document.querySelectorAll('.pergunta')
     for(let i=1;i<=question.length;i++){
 
         let question1 = document.querySelector(`.question-text.q${i}`).children[0].value
-        const question1Color = document.querySelector(`.question-color.q${i}`).children[0].value
-        const question1Answer1 = document.querySelector(`.answer-true .answer-t-text.q${i}`).children[0].value
-        const question1Image1 = document.querySelector(`.answer-true .answer-t-img.q${i}`).children[0].value
-        const question1Answer2 = document.querySelector(`.answer-false .answer-f-text.q${i}`).children[0].value
-        const question1Image2 = document.querySelector(`.answer-false .answer-f-img.q${i}`).children[0].value
-    
-        if(question1.length<20){
+        let question1Color = document.querySelector(`.question-color.q${i}`).children[0].value
+        let question1Answer1 = document.querySelector(`.answer-true .answer-t-text.q${i}`).children[0].value
+        let question1Image1 = document.querySelector(`.answer-true .answer-t-img.q${i}`).children[0].value
+        let question1Answer2 = document.querySelector(`.answer-false .answer-f-text.q${i}`).children[0].value
+        let question1Image2 = document.querySelector(`.answer-false .answer-f-img.q${i}`).children[0].value
+        
+        let question1Answer3 = document.querySelector(`.answer-false .answer-f-text.q${i}.f2`).children[0].value
+        let question1Image3 = document.querySelector(`.answer-false .answer-f-img.q${i}.f2`).children[0].value
+        let question1Answer4 = document.querySelector(`.answer-false .answer-f-text.q${i}.f3`).children[0].value
+        let question1Image4 = document.querySelector(`.answer-false .answer-f-img.q${i}.f3`).children[0].value
+        
+        /*if(question1.length<20){
                 alert('A pergunta tem que ter no mínimo 20 caracteres')
                 document.querySelector(`.question-text.q${i}`).children[0].value=""
                 return
@@ -314,15 +338,23 @@ const question = document.querySelectorAll('.pergunta')
             }
 
             
-        /* if(isValidUrl(question1Image1)===false || isValidUrl(question1Image2)===false){
+         if(isValidUrl(question1Image1)===false){
                 alert('Insira um URL válido')
+                document.querySelector(`.answer-true .answer-t-img.q${i}`).children[0].value=""
                 return
-            }*/
+            }
+
+            
+            if(isValidUrl(question1Image2)===false){
+                alert('Insira um URL válido')
+                document.querySelector(`.answer-false .answer-f-img.q${i}`).children[0].value=""
+                return
+            }    */
 
             
         
             
-        obj= {title:question1, color:question1Color, answers:[{text:question1Answer1,image:question1Image1,isCorrectAnswer:true},{text:question1Answer2,image:question1Image2,isCorrectAnswer:false}]}
+        obj= {title:question1, color:question1Color, answers:[{text:question1Answer1,image:question1Image1,isCorrectAnswer:true},{text:question1Answer2,image:question1Image2,isCorrectAnswer:false},{text:question1Answer3,image:question1Image3,isCorrectAnswer:false},{text:question1Answer4,image:question1Image4,isCorrectAnswer:false}]}
             
             objectQuestions.push(obj)
     }    
@@ -343,14 +375,22 @@ function goTofinishQuizzCreation(){
          const level1Description = document.querySelector(`.level-description.q${i}`).children[0].value
        const levelMinValue = document.querySelector(`.level-wr.q${i}`).children[0].value
       
+       
+       
        parseInt(levelMinValue)
         
+       if(i===1 && levelMinValue!=0){
+           alert('O primeiro nível deve ter percentual mínimo de zero')
+           document.querySelector(`.level-wr.q${i}`).children[0].value=""
+           return
+           
+       }
        obj={title:level1Title,image:level1Image,text:level1Description,minValue:levelMinValue}
     
         objectLevels.push(obj)
        
 
-       if(level1Title.length<10){
+      /* if(level1Title.length<10){
            alert('O título dever ter no mínimo 10 caracteres')
            document.querySelector(`.level-title.q${i}`).children[0].value=""
            return
@@ -367,6 +407,12 @@ function goTofinishQuizzCreation(){
             document.querySelector(`.level-description.q${i}`).children[0].value=""
             return
         }
+
+        if(isValidUrl(level1Image)===false){
+            alert('Insira um URL válido')
+            document.querySelector(`.level-url.q${i}`).children[0].value=""
+            return
+        }   */
        
 
     }  
@@ -416,11 +462,29 @@ function printCreateQuestions(){
                 <ul class="answer-false">
                     <h2>Resposta(s) incorreta(s)</h2>
                     <li>
-                        <div class="answer-f-text q${i}">
+                        <div class="answer-f-text q${i} f1">
                             <input type="text" placeholder="Resposta incorreta 1">
                         </div>
-                        <div class="answer-f-img q${i}">
+                        <div class="answer-f-img q${i} f1">
                             <input type="text" placeholder="Url da imagem 1">
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="answer-f-text q${i} f2">
+                            <input type="text" placeholder="Resposta incorreta 2">
+                        </div>
+                        <div class="answer-f-img q${i} f2">
+                            <input type="text" placeholder="Url da imagem 2">
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="answer-f-text q${i} f3">
+                            <input type="text" placeholder="Resposta incorreta 3">
+                        </div>
+                        <div class="answer-f-img q${i} f3">
+                            <input type="text" placeholder="Url da imagem 3">
                         </div>
                     </li>
 
@@ -465,17 +529,21 @@ function printCreateLevels(){
 }
 
 function printFinishQuizzPage(){
-   document.querySelector('.complete img').src = mainImage 
+   const putTitle = document.querySelector('.complete span')
+   putTitle.innerHTML=`${quizzTitle}`
+    document.querySelector('.complete img').src = mainImage 
 }
 
 /*------------------Envio Do quizz----------------------*/
 
 function sendQuizz(){
-   let myQuizz= axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes',{title:quizzTitle,
+   
+    let myQuizz= axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes',{title:quizzTitle,
    image:mainImage,
    questions:objectQuestions,
    levels:objectLevels})
 
+   console.log(objectFinal)
    myQuizz.then(serverResponse)
 
     myQuizz.catch(serverError)
@@ -489,7 +557,9 @@ function sendQuizz(){
 function serverResponse(resp){
     console.log('foi certo')
     console.log(resp.data)
-}
+    id=resp.data.id
+    console.log(id)
+    }
 
 
 function serverError(erro){
@@ -499,6 +569,27 @@ function serverError(erro){
 
 
 
+function testGetMyQuizz(){
+
+    const myQuizz = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes/${id}`)
+    console.log(myQuizz)
+    myQuizz.then(printMyQuizz)
+   // 
+}
+
+function printMyQuizz(objectQuizz){
+    const myQuizzes = document.querySelector('.my-quizzes')
+console.log(id)
+    myQuizzes.innerHTML = 
+
+      `
+            <li class="quizz-thumb" onclick="feedToQuizz(this)">
+                <img src="${objectQuizz.image}">
+                <p>${objectQuizz.title}</p>
+                <span>${objectQuizz.id}</span>
+            </li>
+        `
+}
 
 
 

@@ -78,8 +78,8 @@
     <button onclick="testToggleHide(this,'questions')"> toggle 9</button>
     <button onclick="testToggleHide(this,'levels')"> toggle 10</button>
     <button onclick="testToggleHide(this,'complete-quizz')"> toggle 11</button>
-    <button onclick="testObjectQuestions()">testObjectQuestions</button>
-    <button onclick="testObjectLevels()">testObjectLevels</button>
+    <button onclick="testGetMyQuizz()"> pegar meu quizz</button>
+    
 </div>
 <div class="create quizz hidden"><!--start quizz info-->
     <h1>Comece pelo começo</h1>
@@ -132,11 +132,29 @@
                     <ul class="answer-false">
                         <h2>Resposta(s) incorreta(s)</h2>
                         <li>
-                            <div class="answer-f-text q1">
+                            <div class="answer-f-text q1 f1">
                                 <input type="text" placeholder="Resposta incorreta 1">
                             </div>
-                            <div class="answer-f-img q1">
+                            <div class="answer-f-img q1 f1">
                                 <input type="text" placeholder="Url da imagem 1">
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="answer-f-text q1 f2">
+                                <input type="text" placeholder="Resposta incorreta 2">
+                            </div>
+                            <div class="answer-f-img q1 f2">
+                                <input type="text" placeholder="Url da imagem 2">
+                            </div>
+                        </li>
+    
+                        <li>
+                            <div class="answer-f-text q1 f3">
+                                <input type="text" placeholder="Resposta incorreta 3">
+                            </div>
+                            <div class="answer-f-img q1 f3">
+                                <input type="text" placeholder="Url da imagem 3">
                             </div>
                         </li>
                     </ul>
@@ -158,7 +176,7 @@
                     </div>
                     
                     <div class="level-min-wr level-wr q1">
-                        <input type="text" placeholder="% de acerto mínima">
+                        <input type="text" placeholder="Digite 0 para a porcentagem de acerto do nível 1">
                     </div>
                     
                     <div class="level-url q1">
@@ -199,11 +217,11 @@
 </div><!-- end quizz levels-->
 
 <div class="create complete-quizz hidden"><!-- start finish quizz screen-->
-    <h1>Votre quizz est prêt!</h1>
+    <h1>Seu Quizz está pronto!</h1>
 
     <div class='complete'>
         <img src="images/furao.png">
-        <span>exemplo macaco-louco</span>
+        <span></span>
     </div>
 
     <button onclick="sendQuizz()">Acessar Quizz</button>
