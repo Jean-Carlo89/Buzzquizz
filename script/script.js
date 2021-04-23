@@ -3,6 +3,8 @@
 let quizzes = [];
 let selected;
 let question_counter = 2;
+let correct_counter = 0;
+let control = 0;
 
 /* TELA 1 */
 getQuizzes();
@@ -50,6 +52,8 @@ function renderQuizz(id) {
         }
     }
     
+    console.log(selected);
+
     const img_title = document.querySelector(".img-title");
     img_title.innerHTML = `
         <img src="${selected.image}">
@@ -74,7 +78,7 @@ function renderQuizz(id) {
             return Math.random() - 0.5; 
         }
 
-        for (let j=0; j<4; j++) {
+        for (let j=0; j<random_answers.length; j++) {
             const answer_block = document.querySelector(".answer-block:last-of-type");
             let value;
 
@@ -92,27 +96,12 @@ function renderQuizz(id) {
                 </div>
             `;
         }
-
     }
-
-    quizz_feed.innerHTML += `
-        <div class="quizz-end">
-            <div class="quizz-title">
-                porcentagem de acerto: ${selected.levels[0].title}
-            </div>
-            <div class="quizz-message">
-                <img src="${selected.levels[0].image}">
-                <span>${selected.levels[0].text}</span>
-            </div>
-    
-            <button class="restart">Reiniciar o Quizz</button>
-            <button class="home">Voltar para home</button>
-        </div>
-    `
 }
 
 function selectAnswer(element) {
     const array = element.parentNode.children;
+    const correct_answer = parseInt(element.lastElementChild.innerHTML);
 
     for (let i=0; i<array.length; i++) {
         if (array[i].innerHTML !== element.innerHTML) {
@@ -128,7 +117,17 @@ function selectAnswer(element) {
         }
     }
 
-    setTimeout(nextQuestion, 2000);
+    if (correct_answer) {
+        correct_counter++;
+    }
+
+    control++;
+
+    if(control < selected.questions.length) {
+        setTimeout(nextQuestion, 2000);
+    } else {
+        setTimeout(endQuizz, 2000);
+    }
 }
 
 function nextQuestion() {
@@ -138,6 +137,36 @@ function nextQuestion() {
     question_counter += 2;
 }
 
+function endQuizz() {
+    const percentage = (Math.floor(correct_counter/control*100));
+    let selected_level = 0;
+
+    for (let i=0; i<selected.levels.length; i++) {
+        if (percentage > selected.levels[i].minValue) {
+            selected_level = i;
+        }
+    }
+
+    const quizz_feed = document.querySelector(".quizz-feed");
+
+    quizz_feed.innerHTML += `
+        <div class="quizz-end">
+            <div class="quizz-title">
+                ${percentage}% de acerto: ${selected.levels[selected_level].title}
+            </div>
+            <div class="quizz-message">
+                <img src="${selected.levels[selected_level].image}">
+                <span>${selected.levels[selected_level].text}</span>
+            </div>
+    
+            <button onclick="restartQuizz()" class="restart">Reiniciar o Quizz</button>
+            <button onclick="quizzToHome()" class="home">Voltar para home</button>
+        </div>
+    `;
+
+    const end_screen = document.querySelector(".quizz-end");
+    end_screen.scrollIntoView();
+}
 
 
 
