@@ -12,7 +12,6 @@ function getQuizzes() {
 }
 function quizzesOK(response) {
     quizzes = response.data;
-    console.log(response.data)
     const public_feed = document.querySelector(".all-quizzes");
     public_feed.innerHTML = "";
 
@@ -66,11 +65,17 @@ function renderQuizz(id) {
         `;
         console.log(selected.questions[i].color);
 
+        const random_answers = selected.questions[i].answers;
+        random_answers.sort(comparador);
+        function comparador() { 
+            return Math.random() - 0.5; 
+        }
+
         for (let j=0; j<4; j++) {
             quizz_feed.innerHTML += `
                 <div class="quizz-answer">
-                    <img src="${selected.questions[i].answers[j].image}">
-                    <p>${selected.questions[i].answers[j].text}</p>
+                    <img src="${random_answers[j].image}">
+                    <p>${random_answers[j].text}</p>
                 </div>
             `;
         }
