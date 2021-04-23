@@ -2,6 +2,7 @@
 
 let quizzes = [];
 let selected;
+let question_counter = 2;
 
 /* TELA 1 */
 getQuizzes();
@@ -112,8 +113,6 @@ function renderQuizz(id) {
 
 function selectAnswer(element) {
     const array = element.parentNode.children;
-    const selected_answer = parseInt(element.lastElementChild.innerHTML);
-    console.log(selected_answer);   
 
     for (let i=0; i<array.length; i++) {
         if (array[i].innerHTML !== element.innerHTML) {
@@ -129,10 +128,15 @@ function selectAnswer(element) {
         }
     }
 
-    
-
+    setTimeout(nextQuestion, 2000);
 }
 
+function nextQuestion() {
+    const next_question = document.querySelector(".quizz-feed").children;
+    next_question[question_counter].scrollIntoView();
+
+    question_counter += 2;
+}
 
 
 
