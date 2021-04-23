@@ -50,17 +50,49 @@ function renderQuizz(id) {
         }
     }
 
-    console.log(selected);
-
     const img_title = document.querySelector(".img-title");
     img_title.innerHTML = `
         <img src="${selected.image}">
         <h2>${selected.title}</h2>
-    `
+    `;
+
+    const quizz_feed = document.querySelector(".quizz-feed");
+    quizz_feed.innerHTML = '';
+    for (let i=0; i<selected.questions.length; i++) {
+        quizz_feed.innerHTML += `
+                <div class="quizz-title">
+                    ${selected.questions[i].title}
+                </div>
+        `;
+        console.log(selected.questions[i].color);
+
+        for (let j=0; j<4; j++) {
+            quizz_feed.innerHTML += `
+                <div class="quizz-answer">
+                    <img src="${selected.questions[i].answers[j].image}">
+                    <p>${selected.questions[i].answers[j].text}</p>
+                </div>
+            `;
+        }
+    }
+
+    
 }
 
-
-
+/*
+<div class="quizz-end">
+            <div class="quizz-title">
+                88% de acerto: Você é praticamente um aluno de Hogwarts!
+            </div>
+            <div class="quizz-message">
+                <img src="images/dumbledore.png">
+                <span>Insira mensagem de final de quizz aqui</span>
+            </div>
+    
+            <button class="restart">Reiniciar o Quizz</button>
+            <button class="home">Voltar para home</button>
+        </div>
+*/
 
 
 
