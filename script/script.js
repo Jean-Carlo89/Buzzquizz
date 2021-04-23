@@ -48,7 +48,7 @@ function renderQuizz(id) {
             selected = quizzes[i];
         }
     }
-
+    
     const img_title = document.querySelector(".img-title");
     img_title.innerHTML = `
         <img src="${selected.image}">
@@ -59,7 +59,7 @@ function renderQuizz(id) {
     quizz_feed.innerHTML = '';
     for (let i=0; i<selected.questions.length; i++) {
         quizz_feed.innerHTML += `
-                <div class="quizz-title">
+                <div class="quizz-title" style="color:${selected.questions[i].color}">
                     ${selected.questions[i].title}
                 </div>
                 <div class="answer-block">
