@@ -62,6 +62,7 @@ function renderQuizz(id) {
                 <div class="quizz-title">
                     ${selected.questions[i].title}
                 </div>
+                <div class="answer-block"></div>
         `;
         console.log(selected.questions[i].color);
 
@@ -72,13 +73,16 @@ function renderQuizz(id) {
         }
 
         for (let j=0; j<4; j++) {
-            quizz_feed.innerHTML += `
-                <div class="quizz-answer">
+            const answer_block = document.querySelector(".answer-block:last-of-type");
+
+            answer_block.innerHTML += `
+                <div class="quizz-answer" onclick="selectAnswer(this)">
                     <img src="${random_answers[j].image}">
                     <p>${random_answers[j].text}</p>
                 </div>
             `;
         }
+
     }
 
     quizz_feed.innerHTML += `
@@ -97,6 +101,19 @@ function renderQuizz(id) {
     `
 }
 
+function selectAnswer(element) {
+    console.log(element);
+    console.log(element.parentNode.children);
+
+    const array = element.parentNode.children;
+    for (let i=0; i<array.length; i++) {
+        if (array[i].innerHTML !== element.innerHTML) {
+            array[i].classList.add('transparent');
+        }
+        array[i].removeAttribute("onclick");
+    }
+
+}
 
 
 

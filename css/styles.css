@@ -201,6 +201,11 @@ body {
         flex-wrap: wrap;
         justify-content: space-between;
 }
+    .answer-block {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
         .quizz-feed .quizz-title {
             width: 100%;
             height: 140px;
@@ -241,6 +246,9 @@ body {
 }
 .transparent {
     opacity: 0.4;
+}
+.opaque {
+    opacity: 1;
 }
 
 .quizz-end {
