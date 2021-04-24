@@ -29,7 +29,8 @@ function quizzesOK(response) {
         `;
     }
 
-    if (array_id[0] !== undefined) {
+    
+    if (localStorage.getItem('ids')) {
         renderMyQuizzes();
     }
 }
@@ -41,8 +42,9 @@ function feedToQuizz(element) {
     goto.classList.toggle('hidden');
 
     goto.scrollIntoView();
-
+    console.log(element)
     const id = parseInt(element.lastElementChild.innerHTML);
+    console.log(id)
     renderQuizz(id);
 }
 
@@ -195,11 +197,15 @@ const array_id = [];
 function saveLocally() {
     const id_serialized = JSON.stringify(array_id);
     localStorage.setItem("ids", id_serialized);
+    
 }
 
 function renderMyQuizzes() {
     const id_serialized = localStorage.getItem("ids");
     const ids = JSON.parse(id_serialized);
+
+    console.log('idserialized :' +id_serialized)
+    console.log("ids :" + ids)
 
     const created_empty = document.querySelector(".created-empty");
     created_empty.classList.remove('flex');
@@ -317,18 +323,6 @@ function isValidUrl(str)
         }
 }
 
-/*function isValidUrl(myURL) {
-    var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
-    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // ip (v4) address
-    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ //port
-    '(\\?[;&amp;a-z\\d%_.~+=-]*)?'+ // query string
-    '(\\#[-a-z\\d_]*)?$','i');
-    
-    console.log(pattern.test(myURL))
-    return pattern.test(myURL);
- }*/
-
 /*----------------------Criação do quizz-------------*/
 
 function createQuizzInfo(){
@@ -344,7 +338,7 @@ function createQuizzQuestions(){
      numberOfQuestions = document.querySelector('.questions-quantity').children[0].value
      numberOfLevels = document.querySelector('.levels-quantity').children[0].value
 
-    /* if(quizzTitle.length<20 || quizzTitle.length>65){
+     if(quizzTitle.length<20 || quizzTitle.length>65){
         alert('titulo muito pequeno ou muito grande')
         erro =true
     }
@@ -361,7 +355,7 @@ function createQuizzQuestions(){
     if(isValidUrl(mainImage)===false){
                 alert('Insira um URL válido')
                 return
-            }*/
+            }
 
 
     if(erro){
@@ -398,7 +392,7 @@ const question = document.querySelectorAll('.pergunta')
         let question1Answer4 = document.querySelector(`.answer-false .answer-f-text.q${i}.f3`).children[0].value
         let question1Image4 = document.querySelector(`.answer-false .answer-f-img.q${i}.f3`).children[0].value
         
-        /*if(question1.length<20){
+        if(question1.length<20){
                 alert('A pergunta tem que ter no mínimo 20 caracteres')
                 document.querySelector(`.question-text.q${i}`).children[0].value=""
                 return
@@ -429,7 +423,7 @@ const question = document.querySelectorAll('.pergunta')
                 alert('Insira um URL válido')
                 document.querySelector(`.answer-false .answer-f-img.q${i}`).children[0].value=""
                 return
-            }    */
+            }    
 
             
         
@@ -470,7 +464,7 @@ function goTofinishQuizzCreation(){
         objectLevels.push(obj)
        
 
-      /* if(level1Title.length<10){
+       if(level1Title.length<10){
            alert('O título dever ter no mínimo 10 caracteres')
            document.querySelector(`.level-title.q${i}`).children[0].value=""
            return
@@ -492,7 +486,7 @@ function goTofinishQuizzCreation(){
             alert('Insira um URL válido')
             document.querySelector(`.level-url.q${i}`).children[0].value=""
             return
-        }   */
+        }   
        
 
     }  
@@ -669,13 +663,13 @@ myQuizzes.innerHTML =
             
            
 
-    <div class='complete'>
+    <div onclick="pictureToQuizz(this)" class='complete'>
         <img src="${objectQuizz.data.image}">
         <span>${objectQuizz.data.title}</span>
-        <span class="${objectQuizz.data.id}"></span>
+        <span class="opq">${objectQuizz.data.id}</span>
     </div>
 
-            <button ">Acessar Quizz</button>
+            <button onclick="buttonToQuizz()">Acessar Quizz</button>
 
     <span class="toHome" onclick="toHome()">Voltar pra home</span>
         `
@@ -705,6 +699,47 @@ function toHome(){
     resetValues()
 
     getQuizzes();
+}
+
+
+
+function pictureToQuizz(element) {
+    getQuizzes()
+    document.querySelector('.create.complete-quizz').classList.add('hidden')
+    
+    const goto = document.querySelector(".quizz-body");
+    goto.classList.toggle('hidden');
+
+    goto.scrollIntoView();
+    
+    console.log(element)
+    
+    const id = parseInt(element.lastElementChild.innerHTML);
+    
+    console.log(id)
+    setTimeout(renderQuizz,2000,id);
+    //renderQuizz(id);
+}
+
+
+function buttonToQuizz() {
+    getQuizzes()
+    document.querySelector('.create.complete-quizz').classList.add('hidden')
+    
+    const goto = document.querySelector(".quizz-body");
+    goto.classList.toggle('hidden');
+
+    goto.scrollIntoView();
+
+    const element = document.querySelector('.complete')
+    
+    console.log(element)
+    
+    const id = parseInt(element.lastElementChild.innerHTML);
+    
+    console.log(id)
+    
+    setTimeout(renderQuizz,2000,id);
 }
 
 function resetValues(){
